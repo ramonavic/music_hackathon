@@ -2,30 +2,26 @@
 
 <h1>Listing Songs</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Text</th>
-      <th>Artist</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
     <% @songs.each do |song| %>
-      <tr>
-        <td><%= song.title %></td>
-        <td><%= song.text %></td>
-        <td><%= song.artist %></td>
-        <td><%= link_to 'Show', song %></td>
-        <td><%= link_to 'Edit', edit_song_path(song) %></td>
-        <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <h2> Title </h2>
+        <h3><%= song.title %></h3>
+        <h2> Artist </h2>
+        <h3><%= song.artist[:name] %></h3>
+        <h2> Lyrics </h2>
+        <p><%= song.text %></p>
+        <br>
+        <div class = "actions">
+        <%= link_to 'Show', song %>   &mdash;
+        <%= link_to 'Edit', edit_song_path(song) %>   &mdash;
+        <%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+        <br><br><br><br><br><br><br><br>
     <% end %>
-  </tbody>
-</table>
+
 
 <br>
 
-<%= link_to 'New Song', new_song_path %>
+<div class = "footer">
+<%= link_to '+ Add new song', new_song_path %>
+</div>

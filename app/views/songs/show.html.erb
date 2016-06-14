@@ -12,7 +12,7 @@
 
 <p>
   <strong>Artist:</strong>
-  <%= @song.artist %>
+  <%= @song.artist[:name] %>
 </p>
 
 <%= link_to 'Edit', edit_song_path(@song) %> |
