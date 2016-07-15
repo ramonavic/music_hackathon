@@ -1,29 +1,30 @@
 <% @wikiscrape.each do |a| %>
-<h1><%= a.css('.firstHeading').text %></h1>
-<h2> Biography </h2>
-<%= a.css('p')[0].text %> <br><br>
-<%= a.css('.hatnote').text %>
+  <h1><%= a.css('.firstHeading').text %></h1>
+  <h2> Biography </h2>
+  <%= a.css('p')[0].text %> <br><br>
+  <%= a.css('.hatnote').text %>
 <% end %>
 
 <br>
 <h2>Tour dates</h2>
 <% @mtvscrape.each do |a| %>
-<p><%= a.css('.month').text %>
-<%= a.css('.date').text %>
-<%= a.css('.day').text %></p>
-<%= a.css('.location').text %>
-<%= a.css('.venue'['href']) %>
-<br>
+  <p><%= a.css('.month').text %>
+  <%= a.css('.date').text %>
+  <%= a.css('.day').text %></p>
+  <%= a.css('.location').text %>
+  <%= a.css('.venue').text %>
+  <br>
 <% end %>
 
 <h2>News</h2>
 <% @mtvnews.each do |a| %>
-<p><%= a.css('.news-title').text %></p>
-<p><%= a.css('.dateFormatted').text %></p>
+  <p><%= a.css('.title').text %>
+  <%= a.css('.dateFormatted').text %></p>
 <% end %>
 
+<%= link_to @mtvnewslink['href'], "#{@mtvnewslink['href']}" %>
+
 <h2>Photos</h2>
-<% @img_urls.each do |url| %>
-<% image = url.css('.thumb'[5]).text %>
-<%= image_tag image %>
+  <% @images.each do |a| %>
+  <%= image_tag a.css('.artist-content img').attr('src') %>
 <% end %>

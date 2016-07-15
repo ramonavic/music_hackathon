@@ -6,19 +6,22 @@ class ArtistController < ApplicationController
     require 'open-uri'
     require 'rubygems'
 
-    wikiurl = "https://en.wikipedia.org/wiki/Adele"
-    data = Nokogiri::HTML(open(wikiurl))
+    wiki = "https://en.wikipedia.org/wiki/Adele"
+    data = Nokogiri::HTML(open(wiki))
 
     @wikiscrape = data.css('#content')
 
-    mtvurl = "http://www.mtv.com/artists/adele/"
-    data = Nokogiri::HTML(open(mtvurl))
+    mtv = "http://www.mtv.com/artists/adele/"
+    data = Nokogiri::HTML(open(mtv))
 
     @mtvscrape = data.css(".tourdate-item")
-    @mtvnews = data.css("div #profile_latest_news div.title.multiline")
+    @mtvnews = data.css("#profile_latest_news")
+    @mtvnewslink = data.at_css(".list-news a[href]")
 
-    @img_urls = data.css('.content-body img').map{ |i| i['src'] }
+    rollingstone = "http://www.rollingstone.com/music/artists/adele"
+    data = Nokogiri::HTML(open(rollingstone))
+
+    @images = data.css(".main")
 
   end
-
 end
