@@ -22,12 +22,15 @@ class ArtistController < ApplicationController
     mtvurl = "http://www.mtv.com/artists/#{render.to_s}/"
     data = Nokogiri::HTML(open(mtvurl))
 
+
     @mtvscrape = data.css(".tourdate-item")
-    @mtvnews = data.css("div #profile_latest_news div.title.multiline")
+    @mtvnews = data.css("#profile_latest_news")
+    @mtvnewslink = data.at_css(".list-news a[href]")
 
-    @img_urls = data.css('.content-body img').map{ |i| i['src'] }
+    rollingstone = "http://www.rollingstone.com/music/artists/#{render.to_s}"
+    data = Nokogiri::HTML(open(rollingstone))
 
-  end
+    @images = data.css(".main")
 
   def render_artist
   end
@@ -45,4 +48,5 @@ class ArtistController < ApplicationController
   end
 
 
+  end
 end
