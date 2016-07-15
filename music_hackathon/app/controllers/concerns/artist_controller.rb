@@ -1,16 +1,21 @@
 class ArtistController < ApplicationController
 
-def index
+  def index
 
-  require 'nokogiri'
-  require 'open-uri'
-  require 'rubygems'
+    require 'nokogiri'
+    require 'open-uri'
+    require 'rubygems'
 
-  url = "https://en.wikipedia.org/wiki/Michael_Jackson"
-  data = Nokogiri::HTML(open(url))
+    wikiurl = "https://en.wikipedia.org/wiki/Michael_Jackson"
+    data = Nokogiri::HTML(open(wikiurl))
 
-  @scrape = data.css('#content')
+    @wikiscrape = data.css('#content')
 
-end
+    mtvurl = "http://www.mtv.com/artists/adele/"
+    data = Nokogiri::HTML(open(mtvurl))
+
+    @mtvscrape = data.css("#artist-tourdates .content-inner")
+
+  end
 
 end

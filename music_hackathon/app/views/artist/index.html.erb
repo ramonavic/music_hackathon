@@ -1,6 +1,14 @@
 
-<% @scrape.each do |a| %>
+<% @wikiscrape.each do |a| %>
 <%= a.css('.firstHeading').text %><br><br>
 <%= a.css('p')[0].text %> <br><br>
 <%= a.css('.hatnote').text %>
+<% end %>
+
+<br><br>
+
+<% @mtvscrape.each do |a| %>
+<%= a.css('.month').text %><br><br>
+<%= a.css('.date').text %><br><br>
+<%= a.css('.day').text %><br><br>
 <% end %>
