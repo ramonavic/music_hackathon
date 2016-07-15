@@ -21,4 +21,12 @@ class ArtistController < ApplicationController
 
   end
 
+  def new
+    @artist = Artist.new
+  end
+
+  def create
+    @artist = Artist.new(params.require(:artist, :name))
+  end
+
 end
