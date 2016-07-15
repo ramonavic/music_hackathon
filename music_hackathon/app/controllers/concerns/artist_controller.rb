@@ -11,15 +11,15 @@ class ArtistController < ApplicationController
 
     @artist = Artist.find(params[:id])
 
-    render = @artist.name
+    render = @artist.name.downcase
     # @render = Artist.new(params.require(:artist, :name))
 
-    wikiurl = "https://en.wikipedia.org/wiki/#{render.to_s}"
+    wikiurl = "https://en.wikipedia.org/wiki/#{render.to_s.tr(' ', '_')}"
     data = Nokogiri::HTML(open(wikiurl))
 
     @wikiscrape = data.css('#content')
 
-    mtvurl = "http://www.mtv.com/artists/#{render.to_s}/"
+    mtvurl = "http://www.mtv.com/artists/#{render.parameterize.to_s}/"
     data = Nokogiri::HTML(open(mtvurl))
 
 
@@ -27,7 +27,7 @@ class ArtistController < ApplicationController
     @mtvnews = data.css("#profile_latest_news")
     @mtvnewslink = data.at_css(".list-news a[href]")
 
-    rollingstone = "http://www.rollingstone.com/music/artists/#{render.to_s}"
+    rollingstone = "http://www.rollingstone.com/music/artists/#{render.parameterize.to_s}"
     data = Nokogiri::HTML(open(rollingstone))
 
     @images = data.css(".main")
