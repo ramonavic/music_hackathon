@@ -15,7 +15,9 @@ class ArtistController < ApplicationController
     data = Nokogiri::HTML(open(mtvurl))
 
     @mtvscrape = data.css(".tourdate-item")
-    @mtvnews = data.css(".content-body")
+    @mtvnews = data.css("div #profile_latest_news div.title.multiline")
+
+    @img_urls = data.css('.content-body img').map{ |i| i['src'] }
 
   end
 
