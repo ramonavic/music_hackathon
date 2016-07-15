@@ -1,0 +1,6 @@
+
+<% @scrape.each do |a| %>
+<%= a.css('.firstHeading').text %><br><br>
+<%= a.css('p')[0].text %> <br><br>
+<%= a.css('.hatnote').text %>
+<% end %>
