@@ -1,14 +1,29 @@
-
 <% @wikiscrape.each do |a| %>
-<%= a.css('.firstHeading').text %><br><br>
+<h1><%= a.css('.firstHeading').text %></h1>
+<h2> Biography </h2>
 <%= a.css('p')[0].text %> <br><br>
 <%= a.css('.hatnote').text %>
 <% end %>
 
-<br><br>
-
+<br>
+<h2>Tour dates</h2>
 <% @mtvscrape.each do |a| %>
-<%= a.css('.month').text %><br><br>
-<%= a.css('.date').text %><br><br>
-<%= a.css('.day').text %><br><br>
+<p><%= a.css('.month').text %>
+<%= a.css('.date').text %>
+<%= a.css('.day').text %></p>
+<%= a.css('.location').text %>
+<%= a.css('.venue'['href']) %>
+<br>
+<% end %>
+
+<h2>News</h2>
+<% @mtvnews.each do |a| %>
+<p><%= a.css('.news-title').text %></p>
+<p><%= a.css('.dateFormatted').text %></p>
+<% end %>
+
+<h2>Photos</h2>
+<% @img_urls.each do |url| %>
+<% image = url.css('.thumb'[5]).text %>
+<%= image_tag image %>
 <% end %>
