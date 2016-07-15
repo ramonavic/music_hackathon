@@ -1,10 +1,18 @@
 class ArtistController < ApplicationController
 
   def index
+    @artists = Artist.pluck(:name, :id)
+  end
 
+  def show
+  end
+
+  def render_artist
     require 'nokogiri'
     require 'open-uri'
     require 'rubygems'
+
+    # @render = Artist.new(params.require(:artist, :name))
 
     wikiurl = "https://en.wikipedia.org/wiki/Adele"
     data = Nokogiri::HTML(open(wikiurl))
@@ -26,7 +34,12 @@ class ArtistController < ApplicationController
   end
 
   def create
-    @artist = Artist.new(params.require(:artist, :name))
+    @artist = Artist.new(params.require(:artist).permit(:name))
+
+    if @artist.save
+      redirect_to artist_index_path
+    end
   end
+
 
 end
