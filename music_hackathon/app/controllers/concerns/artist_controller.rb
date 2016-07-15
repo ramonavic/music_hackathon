@@ -1,25 +1,25 @@
 class ArtistController < ApplicationController
+  require 'nokogiri'
+  require 'open-uri'
+  require 'rubygems'
 
   def index
-    @artists = Artist.pluck(:name, :id)
+    @artists = Artist.all
   end
 
   def show
-  end
 
-  def render_artist
-    require 'nokogiri'
-    require 'open-uri'
-    require 'rubygems'
+    @artist = Artist.find(params[:id])
 
+    render = @artist.name
     # @render = Artist.new(params.require(:artist, :name))
 
-    wikiurl = "https://en.wikipedia.org/wiki/Adele"
+    wikiurl = "https://en.wikipedia.org/wiki/#{render.to_s}"
     data = Nokogiri::HTML(open(wikiurl))
 
     @wikiscrape = data.css('#content')
 
-    mtvurl = "http://www.mtv.com/artists/adele/"
+    mtvurl = "http://www.mtv.com/artists/#{render.to_s}/"
     data = Nokogiri::HTML(open(mtvurl))
 
     @mtvscrape = data.css(".tourdate-item")
@@ -27,6 +27,9 @@ class ArtistController < ApplicationController
 
     @img_urls = data.css('.content-body img').map{ |i| i['src'] }
 
+  end
+
+  def render_artist
   end
 
   def new
