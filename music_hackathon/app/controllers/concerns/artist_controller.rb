@@ -16,9 +16,12 @@ class ArtistController < ApplicationController
 
     @mtvscrape = data.css(".tourdate-item")
     @mtvnews = data.css("#profile_latest_news")
-    @mtvimgs = data.at_css("#profile_artist_images a[href]")
     @mtvnewslink = data.at_css(".list-news a[href]")
 
-  end
+    billboard = "http://www.rollingstone.com/music/artists/adele"
+    data = Nokogiri::HTML(open(billboard))
 
+    @images = data.at_css(".content-card img").attr('src')
+
+  end
 end
