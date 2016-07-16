@@ -69,6 +69,16 @@ height: 100%;
    font-size: inherit;
  }
 
+ #artistimage img{
+   max-height: 400px;
+   max-width: 600px;
+ }
+
+ #tourdates {
+   max-height: 400px;
+   max-width: 400px;
+ }
+
  footer.page-footer {
    margin: 0;
  }
