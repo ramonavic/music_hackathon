@@ -11,18 +11,7 @@
     <ul class="left hide-on-med-and-down">
       <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Artists<i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
-    <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
 
-      <div class = "input-field right">
-        <%= f.label :name, class: "material-icons", id: "search" %>
-        <%= f.text_field :name %>
-      </div>
-
-      <div>
-        <a class="waves-effect waves-light black btn"><%= f.submit("Scrape") %></a>
-      </div>
-
-    <% end %>
 
    </div>
   </nav>

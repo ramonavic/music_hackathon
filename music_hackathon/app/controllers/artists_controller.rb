@@ -4,9 +4,10 @@ class ArtistsController < ApplicationController
   require 'rubygems'
   require 'net/http'
 
-
   def index
     @artists = Artist.all
+    @artist = Artist.find(params[:id])
+
   end
 
   def show
@@ -27,9 +28,8 @@ class ArtistsController < ApplicationController
       puts @wikiscrape
     when Net::HTTPRedirection
       @wikiscrape = ""
-      puts "jezus"
+      puts ""
     end
-
 
     mtvurl = "http://www.mtv.com/artists/#{render.downcase.parameterize.to_s}/"
     response2 = Net::HTTP.get_response(URI(mtvurl))
@@ -47,15 +47,13 @@ class ArtistsController < ApplicationController
     mtvnews = "http://www.mtv.com/artists/#{render.parameterize.to_s}/news/"
     response3 = Net::HTTP.get_response(URI(mtvnews))
 
-
     case response3
     when Net::HTTPSuccess
       news = Nokogiri::HTML(open(mtvnews))
-      @mtvnewslink = news.at_css(".content-body")
+      @mtvnewslink = news.css(".content-body")
     when Net::HTTPRedirection
       @mtvnewslink = ""
     end
-
 
     rollingstone = "http://www.rollingstone.com/music/artists/#{render.parameterize.to_s}"
     response4 = Net::HTTP.get_response(URI(rollingstone))
@@ -68,6 +66,14 @@ class ArtistsController < ApplicationController
       @images = ""
     end
 
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key = 'kg3pJabnU2yMueHyhOYbSPjen'
+      config.consumer_secret = '6KqvwuQ5EUBBmhvtdslyoaaNJ3m5bRpDB2caUX8cwHSxmELzwl'
+      config.access_token = '57038833-FcB0uAbMK7f4ozy6TGI6XxrSP9EsMYfhTOWwIofUO'
+      config.access_token_secret = '2gHIH1NE3KO3cijCXZDww9bF6PtCDjHUGjkvdwMTpHBZH'
+    end
+
+    @tweet = client.user_timeline("#{render}", result_type: "recent").take(5)
 
   end
 
@@ -88,7 +94,7 @@ class ArtistsController < ApplicationController
   end
 
   def destroy
-     @artists = Artist.all
+    @artists = Artist.all
 
     @artist = Artist.find(params[:id])
     @artist.destroy
