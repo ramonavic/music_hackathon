@@ -1,60 +1,75 @@
-<div id="slide1">
-  <div class="content">
-    <div>
-      <h2><%= @artist.name %></h2>
-      <% @images.each do |a| %>
-      <%= image_tag a.css('.artist-content img').attr('src') %>
-      <% end %>
-      <br><br>
-      <h2> Biography </h2>
 
-      <% @wikiscrape.each do |a| %>
-      <%= a.css('p')[1].text %> <br><br>
-      <%= a.css('p')[2].text %> <br><br>
-      <%= a.css('p')[3].text %> <br><br>
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div>
+        <h2><%= @artist.name %></h2>
+        <% @images.each do |a| %>
+        <%= image_tag a.css('.artist-content img').attr('src') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="parallax"><%= image_tag("artist.jpg", :alt => "artist") %></div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <h1>mtv scrape</h1>
+    <div>
+      <% @mtvscrape.each do |a| %>
+      <p><%= a.css('.month').text %>
+      <%= a.css('.date').text %>
+      <%= a.css('.day').text %></p>
+      <%= a.css('.location').text %>
+      <%= a.css('.venue'['href']) %>
       <% end %>
     </div>
   </div>
 </div>
-<div id="slide2">
-  <div class="content" >
-    <% @mtvscrape.each do |a| %>
-    <p><%= a.css('.month').text %>
-    <%= a.css('.date').text %>
-    <%= a.css('.day').text %></p>
-    <%= a.css('.location').text %>
-    <%= a.css('.venue'['href']) %>
-    <br>
-    <% end %>
-   </div>
-  </div>
-</div>
-<div id="slide3">
-<div class="content">
-  <div>
-    <% @wikiscrape.each do |a| %>
-    <h1><%= a.css('.firstHeading').text %></h1>
-    <h2> Biography </h2>
-    <%= a.css('p')[0].text %> <br><br>
-    <%= a.css('.hatnote').text %>
-    <% end %>
-  </div>
-</div>
-</div>
-<div id="slide4">
-  <div class="content">
-    <h2>Twitter shit</h2>
 
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <div>
+          <% @wikiscrape.each do |a| %>
+          <h1><%= a.css('.firstHeading').text %></h1>
+          <h2> Biography </h2>
+          <%= a.css('p')[0].text %>
+          <%= a.css('.hatnote').text %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="parallax"><%= image_tag("festival.jpg", :alt => "artist") %></div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 center">
+        <div>
+        <h2>News</h2>
+        <% @mtvnews.each do |a| %>
+        <p><%= a.css('.news-title').text %></p>
+        <p><%= a.css('.dateFormatted').text %></p>
+        <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<div id="slide5">
-  <div class="content">
-    <h2>News</h2>
-    <% @mtvnews.each do |a| %>
-    <p><%= a.css('.news-title').text %></p>
-    <p><%= a.css('.dateFormatted').text %></p>
-    <%= link_to @mtvnewslink['href'], "#{@mtvnewslink['href']}" %>
-    <% end %>
+
+
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+      </div>
+    </div>
   </div>
+  <div class="parallax"><%= image_tag("artist.jpg", :alt => "artist") %></div>
 </div>
-<br>

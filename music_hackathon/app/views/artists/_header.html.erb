@@ -1,8 +1,9 @@
 <div class="navbar-fixed">
   <ul id="dropdown1" class="dropdown-content black">
-    <li><a href="#!" class="white-text">Artist one</a></li>
-    <li><a href="#!" class="white-text">Artist two</a></li>
-    <li><a href="#!" class="white-text">Artist three</a></li>
+     <% @artists.each do |artist| %>
+      <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
+
+    <% end %>
   </ul>
 <nav>
   <div class="nav-wrapper black">
