@@ -7,14 +7,17 @@
 <div id="slide1">
   <div class="content">
     <div>
-      <h2>Photos</h2>
+      <h2><%= @artist.name %></h2>
       <% @images.each do |a| %>
       <%= image_tag a.css('.artist-content img').attr('src') %>
       <% end %>
+      <br><br>
+      <h2> Biography </h2>
+
       <% @wikiscrape.each do |a| %>
-      <%= a.css('.firstHeading').text %><br><br>
-      <%= a.css('p')[0].text %> <br><br>
-      <%= a.css('.hatnote').text %>
+      <%= a.css('p')[1].text %> <br><br>
+      <%= a.css('p')[2].text %> <br><br>
+      <%= a.css('p')[3].text %> <br><br>
       <% end %>
     </div>
   </div>

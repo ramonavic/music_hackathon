@@ -17,7 +17,7 @@ class ArtistsController < ApplicationController
     wikiurl = "https://en.wikipedia.org/wiki/#{render.to_s.tr(' ', '_')}"
     data = Nokogiri::HTML(open(wikiurl))
 
-    @wikiscrape = data.css('#content')
+    @wikiscrape = data.css('#mw-content-text')
 
     mtvurl = "http://www.mtv.com/artists/#{render.parameterize.to_s}/"
     data = Nokogiri::HTML(open(mtvurl))
@@ -31,9 +31,6 @@ class ArtistsController < ApplicationController
     data = Nokogiri::HTML(open(rollingstone))
 
     @images = data.css(".main")
-
-  def render_artist
-  end
 
   def new
     @artist = Artist.new
