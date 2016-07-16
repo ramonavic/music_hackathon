@@ -2,6 +2,8 @@ class ArtistsController < ApplicationController
   require 'nokogiri'
   require 'open-uri'
   require 'rubygems'
+  require 'net/http'
+
 
   def index
     @artists = Artist.all
@@ -15,22 +17,52 @@ class ArtistsController < ApplicationController
     # @render = Artist.new(params.require(:artist, :name))
 
     wikiurl = "https://en.wikipedia.org/wiki/#{render.to_s.tr(' ', '_')}"
-    data = Nokogiri::HTML(open(wikiurl))
 
-    @wikiscrape = data.css('#mw-content-text')
+    response = Net::HTTP.get_response(URI(wikiurl))
+
+    puts response.to_s
+
+    case response
+    when Net::HTTPSuccess
+      @data = Nokogiri::HTML(open(wikiurl))
+      @wikiscrape = @data.css('#mw-content-text')
+    when Net::HTTPRedirection
+      @wikiscrape = ""
+      puts @wikiscrape
+    end
+
 
     mtvurl = "http://www.mtv.com/artists/#{render.parameterize.to_s}/"
-    data = Nokogiri::HTML(open(mtvurl))
+
+    response = Net::HTTP.get_response(URI(mtvurl))
+
+    case response
+    when Net::HTTPSuccess
+      @data = Nokogiri::HTML(open(mtvurl))
+      @mtvscrape = data.css(".tourdate-item")
+      @mtvnews = data.css("#profile_latest_news")
+      @mtvnewslink = data.at_css(".list-news a[href]")
+    when Net::HTTPRedirection
+      @mtvscrape = ""
+      @mtvnews = ""
+      @mtvnewslink = ""
+    end
 
 
-    @mtvscrape = data.css(".tourdate-item")
-    @mtvnews = data.css("#profile_latest_news")
-    @mtvnewslink = data.at_css(".list-news a[href]")
 
     rollingstone = "http://www.rollingstone.com/music/artists/#{render.parameterize.to_s}"
-    data = Nokogiri::HTML(open(rollingstone))
+    response = Net::HTTP.get_response(URI(rollingstone))
 
-    @images = data.css(".main")
+    case response
+    when Net::HTTPSuccess
+      data = Nokogiri::HTML(open(rollingstone))
+      @images = data.css(".main")
+    when Net::HTTPRedirection
+      @images = ""
+    end
+
+
+  end
 
   def new
     @artist = Artist.new
@@ -50,5 +82,4 @@ class ArtistsController < ApplicationController
 
 
 
-  end
 end
