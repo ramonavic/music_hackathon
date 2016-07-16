@@ -15,6 +15,7 @@
       <h2> Biography </h2>
 
       <% @wikiscrape.each do |a| %>
+      <%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %>
       <%= a.css('p')[1].text %> <br><br>
       <%= a.css('p')[2].text %> <br><br>
       <%= a.css('p')[3].text %> <br><br>
