@@ -8,6 +8,7 @@ class ArtistsController < ApplicationController
   end
 
   def show
+     @artists = Artist.all
 
     @artist = Artist.find(params[:id])
 
@@ -35,10 +36,14 @@ class ArtistsController < ApplicationController
     @images = data.css(".main")
 
   def new
+     @artists = Artist.all
+
     @artist = Artist.new
   end
 
   def create
+     @artists = Artist.all
+
     @artist = Artist.new(params.require(:artist).permit(:name))
 
     if @artist.save
@@ -47,6 +52,8 @@ class ArtistsController < ApplicationController
   end
 
   def destroy
+     @artists = Artist.all
+
     @artist = Artist.find(params[:id])
     @artist.destroy
 

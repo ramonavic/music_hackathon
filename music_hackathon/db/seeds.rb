@@ -11,3 +11,4 @@ alice = User.create( email: 'alice@ex.com', password: 'abcd1234' )
 anton = User.create( email: 'anton@ex.com', password: 'abcd1234' )
 
 Artist.create( name: 'Rihanna' )
+Artist.create( name: 'Kanye West' )
