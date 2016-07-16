@@ -1,126 +1,18 @@
-body{
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-h1 {
-  font-family:"Arvo";
-  font-weight:normal;
-  font-size: 55px;
-  text-align: center;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-}
-
-h2 {
-  font-family:"Arvo";
-  font-weight: normal;
-  font-size: 40px;
-  text-align: center;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-}
-
-h3 {
-  font-family: Oswald;
-  font-weight: normal;
-  font-size: 16px;
-  text-align: center;
-  margin: 5px 0;
-  padding: 0;
-  z-index: 1;
-  position: relative;
-}
-
-.center { margin: 0 auto; }
-.content{ margin: 0 auto; width: 960px; }
-.clear { clear: both; }
-
-#header {
-  width: 25%;
-  background: image-url("header-bg.png");
-  height: 224px;
-  position: fixed;
-  margin-left: 30px;
-}
-
-#nav { margin-top: 20px; padding: 16px;}
-
-#logo a { color: #fff; text-decoration: none; font-size: 30px; color: #fff; font-family:"Wellfleet"; font-weight: bold;}
-
-#nav ul{
-  list-style: none;
-  display: block;
-  padding: 0;
-}
-
-#nav li{
-  margin-top: 9px;
-}
-
-#nav li a { color: #fff; opacity:0.6; font-size: 16px; text-decoration: none; font-family: 'Wellfleet'; }
-
-#nav li a.active { color: #fff; opacity:1; border-bottom: 2px solid #fff; }
-
-#nav li a:hover { color: #fff; opacity:1; }
-
-.quotes {
-  font-family: 'Goudy Bookletter 1911', serif;
-  font-weight: normal;
-  font-size: 30px;
-  text-align: left;
-  margin: 50px auto;
-}
-
-.author_name_white { font-family:"Wellfleet"; margin: 70px 0 0 75px; color: #fff; font-size: 20px; }
-
-.author_name_gray { font-family:"Wellfleet"; margin: 70px 0 0 75px; color: #94a4a4; font-size: 20px; }
-
-.quotes_container { width: 800px; margin: 0 auto; }
-
-#slide1, #slide2{ width: 100%; }
-
-#slide1{
-  background:image-url("slide1.jpg") 50% 0 no-repeat fixed;
-  color: #fff;
-  height: 600px;
-  margin: 0;
-  padding: 200px 0 260px 0;
-  background-size: cover;
-}
-
-#slide2{
-  background-color: #fff;
-  color: #333333;
-  height: 300px;
-  margin: 0 auto;
-  overflow: hidden;
-  padding: 200px 0;
-}
-
-#slide3{
-  background: image-url("slide3.jpg") 50% 0 no-repeat fixed;
-  color: #fff;
-  height: 600px;
-  padding: 170px 0 0 0;
-  background-size: cover;
-}
-
-#slide4{
-  background-color: #fff;
-  color: #333333;
-  height: 300px;
-  padding: 200px 0;
-}
-
-#slide5{
-  background: image-url("slide5.jpg") 50% 0 no-repeat fixed;
-  height: 200px;
-  margin: 0 auto;
-  padding: 250px 0;
-  color: #fff;
-  background-size: cover;
-}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ .parallax-container {
+   height: "your height here";
+ }
