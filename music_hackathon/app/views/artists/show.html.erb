@@ -26,7 +26,7 @@
     <%= a.css('.date').text %>
     <%= a.css('.day').text %></p>
     <%= a.css('.location').text %>
-    <%= a.css('.venue'['href']) %>
+    <%= a.css('.venue').text %>
     <br>
     <% end %>
    </div>
@@ -56,7 +56,10 @@
     <% @mtvnews.each do |a| %>
     <p><%= a.css('.news-title').text %></p>
     <p><%= a.css('.dateFormatted').text %></p>
-    <%= link_to @mtvnewslink['href'], "#{@mtvnewslink['href']}" %>
+    <% end %>
+
+    <% @mtvnewslink.each do |a| %>
+    <p><%= raw a.css('a[href]') %></p>
     <% end %>
   </div>
 </div>
