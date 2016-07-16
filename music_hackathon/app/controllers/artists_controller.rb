@@ -1,4 +1,4 @@
-class ArtistController < ApplicationController
+class ArtistsController < ApplicationController
   require 'nokogiri'
   require 'open-uri'
   require 'rubygems'
@@ -43,9 +43,14 @@ class ArtistController < ApplicationController
     @artist = Artist.new(params.require(:artist).permit(:name))
 
     if @artist.save
-      redirect_to artist_index_path
+      redirect_to root_path
     end
   end
+
+  def destroy
+
+  end
+
 
 
   end

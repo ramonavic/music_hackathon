@@ -3,11 +3,9 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
-  root 'artist#index'
-  resources :artist
-  get '/render_artist', to: 'artist#render_artist'
-  post '/create_artist', to: 'artist#create'
-  get '/artist_index', to: 'artist#index'
+  root 'artists#index'
+  resources :artists
+  post '/create_artists', to: 'artists#create'
 
 
   # Example of regular route:
