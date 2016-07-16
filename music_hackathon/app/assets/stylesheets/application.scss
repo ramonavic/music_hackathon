@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
- .parallax-container {
-   height: "your height here";
- }
+ @import "materialize";
+
+ nav .nav-wrapper form, nav .nav-wrapper form .input-field{
+height: 100%;
+}
