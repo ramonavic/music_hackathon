@@ -2,7 +2,6 @@
   <div class="section no-pad-bot">
     <div class="container">
       <%= link_to 'Delete', @artist, method: :delete, data: { confirm: 'Are you sure?' } %>
-
       <div>
         <h2><%= @artist.name %></h2>
         <% if @images.blank? %>
@@ -12,7 +11,6 @@
               <%= image_tag a.css('.artist-content img').attr('src') %>
             <% end %>
         <% end %>
-
         <br><br>
         <h2>Twitter feed</h2>
         <% @tweet.collect do |tweet| %>
@@ -20,9 +18,8 @@
         <% end %>
       </div>
     </div>
-
   </div>
-  <div class="parallax"><%= image_tag("artist.jpg", :alt => "artist") %></div>
+  <div class="parallax"><%= image_tag("festivalpic.jpg", :alt => "artist") %></div>
 </div>
 <div class = "container">
   <div class="section" >
@@ -59,7 +56,6 @@
     </div>
   </div>
   <div class="parallax"><%= image_tag("festival.jpg", :alt => "artist") %></div>
-
 </div>
 <div class="container">
   <div class="section">
@@ -71,7 +67,7 @@
           <h3> Couldn't find MTV news of <%= @artist.name %> </h3>
         <% else %>
           <% @mtvnews.each do |a| %>
-            <p><%= raw a.css('a[href]') %></p>
+            <p><%= raw a.css('.multiline') %></p>
           <% end %>
         <% end %>
         </div>
@@ -86,5 +82,5 @@
       </div>
     </div>
   </div>
-  <div class="parallax"><%= image_tag("artist.jpg", :alt => "artist") %></div>
+  <div class="parallax"><%= image_tag("festivalpic.jpg", :alt => "artist") %></div>
 </div>
