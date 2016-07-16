@@ -1,58 +1,90 @@
-<%= render 'artists/header' %>
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <%= link_to 'Delete', @artist, method: :delete, data: { confirm: 'Are you sure?' } %>
 
-<%= link_to 'Delete', @artist, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <div>
+        <h2><%= @artist.name %></h2>
+        <% if @images.blank? %>
+          <%= image_tag ("http://www.festivals.com/img/festivalpic.jpg") %>
+        <% else %>
+            <% @images.each do |a| %>
+              <%= image_tag a.css('.artist-content img').attr('src') %>
+            <% end %>
+        <% end %>
 
-<div id="slide1">
-  <div class="content">
-    <div>
-      <h2>Photos</h2>
-      <% @images.each do |a| %>
-      <%= raw a.css('.thumb')[2] %>
-      <% end %><br><br>
-      <% @wikiscrape.each do |a| %>
-      <%= a.css('.firstHeading').text %><br><br>
-      <%= a.css('p')[0].text %> <br><br>
-      <%= a.css('.hatnote').text %>
-      <% end %>
+        <br><br>
+        <h2>Twitter feed</h2>
+        <% @tweet.collect do |tweet| %>
+        <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
+        <% end %>
+      </div>
     </div>
+
   </div>
+  <div class="parallax"><%= image_tag("artist.jpg", :alt => "artist") %></div>
 </div>
-<div id="slide2">
-  <div class="content" >
-    <h2>Tour dates</h2>
-    <% @mtvscrape.each do |a| %>
-    <%= raw a.css('.content-inner') %>
-    <br>
-    <% end %>
+<div class = "container">
+  <div class="section" >
+    <h2> Tour Dates </h2>
+    <div>
+      <% if @mtvscrape.blank? %>
+        <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
+      <% else %>
+        <% @mtvscrape.each do |a| %>
+          <%= raw a.css('.content-inner') %>
+        <% end %>
+      <% end %>
    </div>
   </div>
 </div>
-<div id="slide3">
-<div class="content">
-  <div>
-    <% @wikiscrape.each do |a| %>
-    <h1><%= a.css('.firstHeading').text %></h1>
-    <h2> Biography </h2>
-    <%= a.css('p')[0].text %> <br><br>
-    <%= a.css('.hatnote').text %>
-    <% end %>
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <div>
+          <h2> Biography </h2>
+          <% if @wikiscrape.blank? %>
+            <h3> Couldn't find biography of <%= @artist.name %> </h3>
+          <% else %>
+            <% @wikiscrape.each do |a| %>
+              <%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %>
+              <%= a.css('p')[1].text %> <br><br>
+              <%= a.css('p')[2].text %> <br><br>
+              <%= a.css('p')[3].text %> <br><br>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="parallax"><%= image_tag("festival.jpg", :alt => "artist") %></div>
+
 </div>
-</div>
-<div id="slide4">
-  <div class="content">
-    <h2>Twitter feed</h2>
-    <% @tweet.collect do |tweet| %>
-    <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
-    <% end %>
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 center">
+        <div>
+        <h2>News</h2>
+        <% if @mtvnews.blank? %>
+          <h3> Couldn't find MTV news of <%= @artist.name %> </h3>
+        <% else %>
+          <% @mtvnews.each do |a| %>
+            <p><%= raw a.css('a[href]') %></p>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+      </div>
+    </div>
   </div>
+  <div class="parallax"><%= image_tag("artist.jpg", :alt => "artist") %></div>
 </div>
-<div id="slide5">
-  <div class="content">
-    <h2>News</h2>
-    <% @mtvnewslink.each do |a| %>
-    <p><%= raw a.css('.multiline') %></p>
-    <% end %>
-  </div>
-</div>
-<br>

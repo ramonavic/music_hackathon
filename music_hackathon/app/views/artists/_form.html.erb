@@ -1,4 +1,6 @@
-<div>
+<div class="row">
+   <div class="input-field col s2">
+
 <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
 
   <div>
@@ -7,8 +9,9 @@
   </div>
 
   <div>
-    <%= f.submit("Scrape") %>
+    <a class="waves-effect waves-light black btn"><%= f.submit("Scrape") %></a>
   </div>
 
 <% end %>
+  </div>
 </div>
