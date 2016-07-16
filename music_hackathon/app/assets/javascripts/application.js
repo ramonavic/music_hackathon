@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 $(document).ready(function() {
-  $('a[href*=#]').each(function() {
+  $('a[href]').each(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
     && location.hostname == this.hostname
     && this.hash.replace(/#/,'') ) {
