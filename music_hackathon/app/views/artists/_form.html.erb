@@ -1,0 +1,14 @@
+<div>
+<%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
+
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.submit("Scrape") %>
+  </div>
+
+<% end %>
+</div>
