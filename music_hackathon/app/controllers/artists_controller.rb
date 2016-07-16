@@ -22,10 +22,12 @@ class ArtistsController < ApplicationController
     mtvurl = "http://www.mtv.com/artists/#{render.parameterize.to_s}/"
     data = Nokogiri::HTML(open(mtvurl))
 
+    mtvnews = "http://www.mtv.com/artists/#{render.parameterize.to_s}/news/"
+    news = Nokogiri::HTML(open(mtvnews))
 
     @mtvscrape = data.css(".tourdate-item")
     @mtvnews = data.css("#profile_latest_news")
-    @mtvnewslink = data.at_css(".list-news a[href]")
+    @mtvnewslink = news.css(".content-body")
 
     rollingstone = "http://www.rollingstone.com/music/artists/#{render.parameterize.to_s}"
     data = Nokogiri::HTML(open(rollingstone))
@@ -45,10 +47,11 @@ class ArtistsController < ApplicationController
   end
 
   def destroy
+    @artist = Artist.find(params[:id])
+    @artist.destroy
 
+    redirect_to root_path
   end
-
-
 
   end
 end

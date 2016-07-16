@@ -13,7 +13,6 @@
   <div class="parallax"><%= image_tag("artist.jpg", :alt => "artist") %></div>
 </div>
 
-
 <div class="container">
   <div class="section">
     <h1>mtv scrape</h1>
@@ -26,10 +25,8 @@
       <%= a.css('.venue'['href']) %>
       <% end %>
     </div>
-
   </div>
 </div>
-
 
 <div class="parallax-container valign-wrapper">
   <div class="section no-pad-bot">
@@ -51,7 +48,6 @@
 
 <div class="container">
   <div class="section">
-
     <div class="row">
       <div class="col s12 center">
         <div>
@@ -59,12 +55,10 @@
         <% @mtvnews.each do |a| %>
         <p><%= a.css('.news-title').text %></p>
         <p><%= a.css('.dateFormatted').text %></p>
-        <%= link_to @mtvnewslink['href'], "#{@mtvnewslink['href']}" %>
         <% end %>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
