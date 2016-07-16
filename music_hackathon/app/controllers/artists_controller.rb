@@ -28,10 +28,19 @@ class ArtistsController < ApplicationController
     @mtvscrape = data.css(".tourdate-item")
     @mtvnewslink = news.css(".content-body")
 
-    rollingstone = "http://www.rollingstone.com/music/artists/#{render.parameterize.to_s}"
-    data = Nokogiri::HTML(open(rollingstone))
+    mtvimages = "http://www.mtv.com/artists/#{render.parameterize.to_s}/photos/"
+    data = Nokogiri::HTML(open(mtvimages))
 
-    @images = data.css(".main")
+    @images = data.css(".content-body")
+
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key = 'kg3pJabnU2yMueHyhOYbSPjen'
+      config.consumer_secret = '6KqvwuQ5EUBBmhvtdslyoaaNJ3m5bRpDB2caUX8cwHSxmELzwl'
+      config.access_token = '57038833-FcB0uAbMK7f4ozy6TGI6XxrSP9EsMYfhTOWwIofUO'
+      config.access_token_secret = '2gHIH1NE3KO3cijCXZDww9bF6PtCDjHUGjkvdwMTpHBZH'
+    end
+
+    @tweet = client.user_timeline("#{render}", result_type: "recent").take(3)
 
   def render_artist
   end

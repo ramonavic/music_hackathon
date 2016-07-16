@@ -1,16 +1,14 @@
 <%= render 'artists/header' %>
 
-
 <%= link_to 'Delete', @artist, method: :delete, data: { confirm: 'Are you sure?' } %>
-
 
 <div id="slide1">
   <div class="content">
     <div>
       <h2>Photos</h2>
       <% @images.each do |a| %>
-      <%= image_tag a.css('.artist-content img').attr('src') %>
-      <% end %>
+      <%= raw a.css('.thumb')[2] %>
+      <% end %><br><br>
       <% @wikiscrape.each do |a| %>
       <%= a.css('.firstHeading').text %><br><br>
       <%= a.css('p')[0].text %> <br><br>
@@ -44,7 +42,9 @@
 <div id="slide4">
   <div class="content">
     <h2>Twitter shit</h2>
-
+    <% @tweet.collect do |tweet| %>
+    <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
+    <% end %>
   </div>
 </div>
 <div id="slide5">
