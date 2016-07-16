@@ -26,7 +26,6 @@ class ArtistsController < ApplicationController
     news = Nokogiri::HTML(open(mtvnews))
 
     @mtvscrape = data.css(".tourdate-item")
-    @mtvnews = data.css("#profile_latest_news")
     @mtvnewslink = news.css(".content-body")
 
     rollingstone = "http://www.rollingstone.com/music/artists/#{render.parameterize.to_s}"

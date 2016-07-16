@@ -21,12 +21,9 @@
 </div>
 <div id="slide2">
   <div class="content" >
+    <h2>Tour dates</h2>
     <% @mtvscrape.each do |a| %>
-    <p><%= a.css('.month').text %>
-    <%= a.css('.date').text %>
-    <%= a.css('.day').text %></p>
-    <%= a.css('.location').text %>
-    <%= a.css('.venue').text %>
+    <%= raw a.css('.content-inner') %>
     <br>
     <% end %>
    </div>
@@ -53,13 +50,8 @@
 <div id="slide5">
   <div class="content">
     <h2>News</h2>
-    <% @mtvnews.each do |a| %>
-    <p><%= a.css('.news-title').text %></p>
-    <p><%= a.css('.dateFormatted').text %></p>
-    <% end %>
-
     <% @mtvnewslink.each do |a| %>
-    <p><%= raw a.css('a[href]') %></p>
+    <p><%= raw a.css('.multiline') %></p>
     <% end %>
   </div>
 </div>
