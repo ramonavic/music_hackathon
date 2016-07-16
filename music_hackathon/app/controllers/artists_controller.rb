@@ -10,7 +10,7 @@ class ArtistsController < ApplicationController
   end
 
   def show
-
+    
     @artist = Artist.find(params[:id])
 
     render = @artist.name.downcase
@@ -28,7 +28,6 @@ class ArtistsController < ApplicationController
       @wikiscrape = @data.css('#mw-content-text')
     when Net::HTTPRedirection
       @wikiscrape = ""
-      puts @wikiscrape
     end
 
 
@@ -39,9 +38,9 @@ class ArtistsController < ApplicationController
     case response
     when Net::HTTPSuccess
       @data = Nokogiri::HTML(open(mtvurl))
-      @mtvscrape = data.css(".tourdate-item")
-      @mtvnews = data.css("#profile_latest_news")
-      @mtvnewslink = data.at_css(".list-news a[href]")
+      @mtvscrape = @data.css(".tourdate-item")
+      @mtvnews = @data.css("#profile_latest_news")
+      @mtvnewslink = @data.at_css(".list-news a[href]")
     when Net::HTTPRedirection
       @mtvscrape = ""
       @mtvnews = ""
@@ -55,8 +54,8 @@ class ArtistsController < ApplicationController
 
     case response
     when Net::HTTPSuccess
-      data = Nokogiri::HTML(open(rollingstone))
-      @images = data.css(".main")
+      @data = Nokogiri::HTML(open(rollingstone))
+      @images = @data.css(".main")
     when Net::HTTPRedirection
       @images = ""
     end

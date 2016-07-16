@@ -80,11 +80,11 @@
     <% if @mtvnews.blank? %>
       <h3> Couldn't find MTV news of <%= @artist.name %> </h3>
     <% else %>
-    <% @mtvnews.each do |a| %>
-      <p><%= a.css('.news-title').text %></p>
-      <p><%= a.css('.dateFormatted').text %></p>
-      <%= link_to @mtvnewslink['href'], "#{@mtvnewslink['href']}" %>
-    <% end %>
+      <% @mtvnews.each do |a| %>
+        <p><%= a.css('.news-title').text %></p>
+        <p><%= a.css('.dateFormatted').text %></p>
+        <%= link_to @mtvnewslink['href'], "#{@mtvnewslink['href']}" %>
+      <% end %>
     <% end %>
   </div>
 </div>
