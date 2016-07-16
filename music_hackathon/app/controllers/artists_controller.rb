@@ -48,10 +48,11 @@ class ArtistsController < ApplicationController
   end
 
   def destroy
+    @artist = Artist.find(params[:id])
+    @artist.destroy
 
+    redirect_to root_path
   end
-
-
 
   end
 end
