@@ -32,9 +32,6 @@ class ArtistsController < ApplicationController
 
     @images = data.css(".main")
 
-  def render_artist
-  end
-
   def new
     @artist = Artist.new
   end
