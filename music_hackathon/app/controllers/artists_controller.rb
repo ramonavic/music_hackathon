@@ -2,38 +2,74 @@ class ArtistsController < ApplicationController
   require 'nokogiri'
   require 'open-uri'
   require 'rubygems'
+  require 'net/http'
+
 
   def index
     @artists = Artist.all
   end
 
   def show
-     @artists = Artist.all
 
     @artist = Artist.find(params[:id])
 
-    render = @artist.name.downcase
-    # @render = Artist.new(params.require(:artist, :name))
+    render = @artist.name.downcase.capitalize
 
     wikiurl = "https://en.wikipedia.org/wiki/#{render.to_s.tr(' ', '_')}"
-    data = Nokogiri::HTML(open(wikiurl))
+    response1 = Net::HTTP.get_response(URI(wikiurl))
 
-    @wikiscrape = data.css('#mw-content-text')
+    puts response1.to_s
 
-    mtvurl = "http://www.mtv.com/artists/#{render.parameterize.to_s}/"
-    data = Nokogiri::HTML(open(mtvurl))
+    case response1
+    when Net::HTTPSuccess
+      data1 = Nokogiri::HTML(open(wikiurl))
+      @wikiscrape = data1.css('#mw-content-text')
+      puts @wikiscrape
+    when Net::HTTPRedirection
+      @wikiscrape = ""
+      puts "jezus"
+    end
+
+
+    mtvurl = "http://www.mtv.com/artists/#{render.downcase.parameterize.to_s}/"
+    response2 = Net::HTTP.get_response(URI(mtvurl))
+
+    case response2
+    when Net::HTTPSuccess
+      data2 = Nokogiri::HTML(open(mtvurl))
+      @mtvscrape = data2.css(".tourdate-item")
+      @mtvnews = data2.css("#profile_latest_news")
+    when Net::HTTPRedirection
+      @mtvscrape = ""
+      @mtvnews = ""
+    end
 
     mtvnews = "http://www.mtv.com/artists/#{render.parameterize.to_s}/news/"
-    news = Nokogiri::HTML(open(mtvnews))
+    response3 = Net::HTTP.get_response(URI(mtvnews))
 
-    @mtvscrape = data.css(".tourdate-item")
-    @mtvnews = data.css("#profile_latest_news")
-    @mtvnewslink = news.css(".content-body")
+
+    case response3
+    when Net::HTTPSuccess
+      news = Nokogiri::HTML(open(mtvnews))
+      @mtvnewslink = news.at_css(".content-body")
+    when Net::HTTPRedirection
+      @mtvnewslink = ""
+    end
+
 
     rollingstone = "http://www.rollingstone.com/music/artists/#{render.parameterize.to_s}"
-    data = Nokogiri::HTML(open(rollingstone))
+    response4 = Net::HTTP.get_response(URI(rollingstone))
 
-    @images = data.css(".main")
+    case response4
+    when Net::HTTPSuccess
+      data4 = Nokogiri::HTML(open(rollingstone))
+      @images = data4.css(".main")
+    when Net::HTTPRedirection
+      @images = ""
+    end
+
+
+  end
 
   def new
      @artists = Artist.all
@@ -60,5 +96,4 @@ class ArtistsController < ApplicationController
     redirect_to root_path
   end
 
-  end
 end
