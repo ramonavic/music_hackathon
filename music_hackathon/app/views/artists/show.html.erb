@@ -1,9 +1,15 @@
+
+
+
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
     <div class="container">
+      <div class="section" >
+      <div>
       <%= link_to 'Delete', @artist, method: :delete, data: { confirm: 'Are you sure?' } %>
       <div>
         <h2><%= @artist.name %></h2>
+        <div id="artistimage">
         <% if @images.blank? %>
           <%= image_tag ("http://www.festivals.com/img/festivalpic.jpg") %>
         <% else %>
@@ -11,11 +17,33 @@
               <%= image_tag a.css('.artist-content img').attr('src') %>
             <% end %>
         <% end %>
+      </div>
+<!--
+        <br><br>
+        <h2> Biography </h2>
+        <% if @wikiscrape.blank? %>
+          <h3> Couldn't find biography of <%= @artist.name %> </h3>
+        <% else %>
+          <% @wikiscrape.each do |a| %>
+            <%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %>
+            <%= a.css('p')[1].text %> <br><br>
+            <%= a.css('p')[2].text %> <br><br>
+            <%= a.css('p')[3].text %> <br><br>
+          <% end %>
+        <% end %>
+
+======= -->
         <br><br>
       </div>
     </div>
   </div>
+
+
+
+
   <div class="parallax"><%= image_tag("festivalpic.jpg", :alt => "artist") %></div>
+</div>
+</div>
 </div><br>
 <div class = "container">
   <div class="section" >
@@ -24,7 +52,7 @@
     <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
     <% end %><br>
     <h2> Tour Dates </h2>
-    <div>
+    <div id="tourdates">
       <% if @mtvscrape.blank? %>
         <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
       <% else %>
@@ -38,9 +66,9 @@
 <div class="parallax-container valign-wrapper">
   <div class="section no-pad-bot">
     <div class="container">
-      <div class="row center">
-        <div>
+      <div class="section" >
           <h2> Biography </h2>
+          <p>
           <% if @wikiscrape.blank? %>
             <h3> Couldn't find biography of <%= @artist.name %> </h3>
           <% else %>
@@ -49,9 +77,9 @@
               <%= a.css('p')[1].text %> <br><br>
               <%= a.css('p')[2].text %> <br><br>
               <%= a.css('p')[3].text %> <br><br>
-              <% end %>
+            <% end %>
           <% end %>
-        </div>
+        </p>
       </div>
     </div>
   </div>
@@ -73,8 +101,14 @@
         </div>
       </div>
     </div>
-    </div>
-    </div>
+  </div>
+</div>
+
+
+
+
+
+
 <div class="parallax-container valign-wrapper">
   <div class="section no-pad-bot">
     <div class="container">
@@ -82,5 +116,6 @@
       </div>
     </div>
   </div>
+
   <div class="parallax"><%= image_tag("festivalpic.jpg", :alt => "artist") %></div>
 </div>

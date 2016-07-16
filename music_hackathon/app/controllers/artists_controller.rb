@@ -6,10 +6,12 @@ class ArtistsController < ApplicationController
 
   def index
     @artists = Artist.all
+    @artist = Artist.find(params[:id])
+
   end
 
   def show
-
+    @artists = Artist.all
     @artist = Artist.find(params[:id])
 
     render = @artist.name.downcase.capitalize

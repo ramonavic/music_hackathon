@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
-  root 'artists#index'
+  root 'artists#new'
   resources :artists
   post '/create_artists', to: 'artists#create'
   # Example of regular route:
