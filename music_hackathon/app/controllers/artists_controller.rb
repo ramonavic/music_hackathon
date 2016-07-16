@@ -10,21 +10,17 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    
+
+    @artists = Artist.all
     @artist = Artist.find(params[:id])
 
     render = @artist.name.downcase
-    # @render = Artist.new(params.require(:artist, :name))
-
     wikiurl = "https://en.wikipedia.org/wiki/#{render.to_s.tr(' ', '_')}"
+    response1 = Net::HTTP.get_response(URI(wikiurl))
 
-    response = Net::HTTP.get_response(URI(wikiurl))
-
-    puts response.to_s
-
-    case response
+    case response1
     when Net::HTTPSuccess
-      @data = Nokogiri::HTML(open(wikiurl))
+      @data = Nokogiri::HTML(open(@wikiurl))
       @wikiscrape = @data.css('#mw-content-text')
     when Net::HTTPRedirection
       @wikiscrape = ""
@@ -32,27 +28,34 @@ class ArtistsController < ApplicationController
 
 
     mtvurl = "http://www.mtv.com/artists/#{render.parameterize.to_s}/"
+    response2 = Net::HTTP.get_response(URI(mtvurl))
 
-    response = Net::HTTP.get_response(URI(mtvurl))
-
-    case response
+    case response2
     when Net::HTTPSuccess
       @data = Nokogiri::HTML(open(mtvurl))
-      @mtvscrape = @data.css(".tourdate-item")
       @mtvnews = @data.css("#profile_latest_news")
-      @mtvnewslink = @data.at_css(".list-news a[href]")
     when Net::HTTPRedirection
       @mtvscrape = ""
       @mtvnews = ""
+    end
+
+    mtvnews = "http://www.mtv.com/artists/#{render.parameterize.to_s}/news/"
+    response3 = Net::HTTP.get_response(URI(mtvnews))
+
+
+    case response3
+    when Net::HTTPSuccess
+      @news = Nokogiri::HTML(open(mtvnews))
+      @mtvnewslink = @news.at_css(".content-body")
+    when Net::HTTPRedirection
       @mtvnewslink = ""
     end
 
 
-
     rollingstone = "http://www.rollingstone.com/music/artists/#{render.parameterize.to_s}"
-    response = Net::HTTP.get_response(URI(rollingstone))
+    response4 = Net::HTTP.get_response(URI(rollingstone))
 
-    case response
+    case response4
     when Net::HTTPSuccess
       @data = Nokogiri::HTML(open(rollingstone))
       @images = @data.css(".main")
@@ -64,10 +67,14 @@ class ArtistsController < ApplicationController
   end
 
   def new
+     @artists = Artist.all
+
     @artist = Artist.new
   end
 
   def create
+     @artists = Artist.all
+
     @artist = Artist.new(params.require(:artist).permit(:name))
 
     if @artist.save
@@ -76,9 +83,12 @@ class ArtistsController < ApplicationController
   end
 
   def destroy
+     @artists = Artist.all
 
+    @artist = Artist.find(params[:id])
+    @artist.destroy
+
+    redirect_to root_path
   end
-
-
 
 end

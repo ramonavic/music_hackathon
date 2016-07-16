@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   root 'artists#index'
   resources :artists
   post '/create_artists', to: 'artists#create'
-
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
