@@ -41,7 +41,7 @@
 </div>
 <div id="slide4">
   <div class="content">
-    <h2>Twitter shit</h2>
+    <h2>Twitter feed</h2>
     <% @tweet.collect do |tweet| %>
     <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
     <% end %>
