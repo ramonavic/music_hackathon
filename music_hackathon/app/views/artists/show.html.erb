@@ -1,7 +1,8 @@
-
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
     <div class="container">
+      <%= link_to 'Delete', @artist, method: :delete, data: { confirm: 'Are you sure?' } %>
+
       <div>
         <h2><%= @artist.name %></h2>
         <% if @images.blank? %>
@@ -13,26 +14,16 @@
         <% end %>
 
         <br><br>
-        <h2> Biography </h2>
-        <% if @wikiscrape.blank? %>
-          <h3> Couldn't find biography of <%= @artist.name %> </h3>
-        <% else %>
-          <% @wikiscrape.each do |a| %>
-            <%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %>
-            <%= a.css('p')[1].text %> <br><br>
-            <%= a.css('p')[2].text %> <br><br>
-            <%= a.css('p')[3].text %> <br><br>
-          <% end %>
+        <h2>Twitter feed</h2>
+        <% @tweet.collect do |tweet| %>
+        <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
         <% end %>
-
       </div>
     </div>
+
   </div>
   <div class="parallax"><%= image_tag("artist.jpg", :alt => "artist") %></div>
 </div>
-
-
-
 <div class = "container">
   <div class="section" >
     <h2> Tour Dates </h2>
@@ -41,19 +32,12 @@
         <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
       <% else %>
         <% @mtvscrape.each do |a| %>
-          <p><%= a.css('.month').text %>
-          <%= a.css('.date').text %>
-          <%= a.css('.day').text %></p>
-          <%= a.css('.location').text %>
-          <%= a.css('.venue'['href']) %>
-          <br>
+          <%= raw a.css('.content-inner') %>
         <% end %>
       <% end %>
    </div>
   </div>
 </div>
-
-
 <div class="parallax-container valign-wrapper">
   <div class="section no-pad-bot">
     <div class="container">
@@ -75,33 +59,26 @@
     </div>
   </div>
   <div class="parallax"><%= image_tag("festival.jpg", :alt => "artist") %></div>
-</div>
 
+</div>
 <div class="container">
   <div class="section">
     <div class="row">
       <div class="col s12 center">
         <div>
         <h2>News</h2>
-
         <% if @mtvnews.blank? %>
           <h3> Couldn't find MTV news of <%= @artist.name %> </h3>
         <% else %>
           <% @mtvnews.each do |a| %>
-            <p><%= a.css('.news-title').text %></p>
-            <p><%= a.css('.dateFormatted').text %></p>
-            <%= link_to @mtvnewslink['href'], "#{@mtvnewslink['href']}" %>
+            <p><%= raw a.css('a[href]') %></p>
           <% end %>
         <% end %>
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-
-
-
+    </div>
+    </div>
 <div class="parallax-container valign-wrapper">
   <div class="section no-pad-bot">
     <div class="container">
