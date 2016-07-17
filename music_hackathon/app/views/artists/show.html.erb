@@ -57,7 +57,7 @@
         <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
       <% else %>
         <% @mtvscrape.each do |a| %>
-          <%= raw a.css('.content-inner')[5] %>
+          <%= raw a.css('.content-inner')[1] %>
         <% end %>
       <% end %>
    </div>
