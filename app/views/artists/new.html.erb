@@ -1,3 +1,12 @@
-<h5>Please enter your favourite artist</h1>
+<div align="center"><br>
+  <h5>Search your favourite artists</h5>
+</div>
 
 <%= render 'form' %>
+
+<div align="center"><br><br>
+  <h5>Your favourite artists:</h5>
+  <% @artists.order('name DESC').each do |a| %>
+  <p><%= a.name %></p>
+  <% end %>
+</div>

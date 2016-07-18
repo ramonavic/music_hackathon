@@ -1,17 +1,10 @@
-<div class="row">
-   <div class="input-field col s2">
-
-<%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
-
-  <div class = "input-field right">
-    <%= f.label :name, class: "material-icons", id: "search" %><br>
-    <%= f.text_field :name %>
-  </div>
-
-  <div>
-    <a class="waves-effect waves-light black btn"><%= f.submit("Scrape") %></a>
-  </div>
-
-<% end %>
+<div class="container">
+  <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
+    <div class="input-field col s6">
+      <%= f.text_field :name %>
+    </div>
+    <div class="center-btn"><br>
+    <a class ="waves-effect waves-light teal btn"><%= f.submit("Submit") %></a>
+    <% end %>
   </div>
 </div>

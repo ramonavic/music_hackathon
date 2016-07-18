@@ -20,8 +20,12 @@
  @import "materialize/extras/nouislider";
 
  nav .nav-wrapper form, nav .nav-wrapper form .input-field{
-height: 100%;
-}
+  height: 100%;
+ }
+
+ .btn {
+   color: white;
+ }
 
  nav ul a,
  nav .brand-logo {
@@ -36,14 +40,17 @@ height: 100%;
    color: #26a69a;
  }
 
+ .style_image {
+   opacity: 0.3;
+ }
+
  .parallax-container {
    min-height: 380px;
    line-height: 0;
    height: auto;
-   color: black;
-   opacity: 0.6;
 
  }
+
    .parallax-container .section {
      width: 100%;
    }
@@ -76,11 +83,19 @@ height: 100%;
    max-width: 600px;
  }
 
- #tourdates {
-   max-height: 400px;
+ .tourdates {
+   max-height: 1000px;
    max-width: 400px;
  }
 
  footer.page-footer {
    margin: 0;
+ }
+
+.input-field label {
+   color: white;
+ }
+
+ .center-btn {
+   text-align: center;
  }
