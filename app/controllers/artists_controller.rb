@@ -65,15 +65,6 @@ class ArtistsController < ApplicationController
       @images = ""
     end
 
-    client = Twitter::REST::Client.new do |config|
-      config.consumer_key = 'kg3pJabnU2yMueHyhOYbSPjen'
-      config.consumer_secret = '6KqvwuQ5EUBBmhvtdslyoaaNJ3m5bRpDB2caUX8cwHSxmELzwl'
-      config.access_token = '57038833-FcB0uAbMK7f4ozy6TGI6XxrSP9EsMYfhTOWwIofUO'
-      config.access_token_secret = '2gHIH1NE3KO3cijCXZDww9bF6PtCDjHUGjkvdwMTpHBZH'
-    end
-
-    @tweet = client.user_timeline("#{render}", result_type: "recent").take(5)
-
   end
 
   def new
