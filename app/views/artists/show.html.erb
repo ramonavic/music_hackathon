@@ -47,10 +47,6 @@
 </div><br>
 <div class = "container">
   <div class="section" >
-    <h2>Twitter feed</h2>
-    <% @tweet.collect do |tweet| %>
-    <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
-    <% end %><br>
     <h2> Tour Dates </h2>
     <div id="tourdates">
       <% if @mtvscrape.blank? %>
