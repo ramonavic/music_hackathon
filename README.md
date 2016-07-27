@@ -7,7 +7,7 @@ A scraper using the Nokogiri gem to retrieve artist data from different pages. T
 Cool stuf we learned from this project include: 
 - Using Nokogiri and Net HTTP to scrape data as effective as possible
 - Validate if data is present inside the view
-- Using the Materialize paralex view
+- Using the Materialize parallax component
 
 
 ###Team: 
