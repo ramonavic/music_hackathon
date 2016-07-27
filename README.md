@@ -1,11 +1,39 @@
-# Music Scraper
+# Music Hackathon Project
 
-A project made in 2 days with a group of 4 during a Hackathon at Codaisseur.
+###INFO
 
-The concept was to create a website that would gather information about the favourite artists of a user in one location.
+A scraper using the Nokogiri gem to retrieve artist data from different pages. The data will be added as a bookmark so that the user can keep track of his or her favourite artists. This hackathon project was created in 2 days. On [this page](https://intense-basin-22468.herokuapp.com/) you can find an example hosted on Heroku. 
 
-We used the Nokogiri gem to allow us to scrape CSS elements from external sources. We implemented the Twitter gem to scrape Twitter feeds of artists. We used Materialise for the front-end.
+Cool stuf we learned from this project include: 
+- Using Nokogiri and Net HTTP to scrape data as effective as possible
+- Validate if data is present inside the view
+- Using the Materialize paralex view
 
-# Instructions
 
-To view the project either clone or download the project or check it out live at https://intense-basin-22468.herokuapp.com. 
+###Team: 
+- [Stefan Ouweneel](https://github.com/Stefanouweneel)
+- [Dennis Dijkstra](https://github.com/dennisdijkstra)
+- [Ramon Schmitt](https://github.com/RamonSchmitt)
+- [Ramon Hofmeister](https://github.com/ramonavic)
+
+###TODO: 
+
+- Background helpers
+- Find a good source for images
+- Bring back connection with Twitter API
+- Styling
+
+###SETUP
+
+First download or clone the package from the Github repository. 
+Then do:
+
+```
+bundle install
+rails s 
+```
+
+
+
+
+
