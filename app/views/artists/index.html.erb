@@ -1,26 +1,20 @@
-
-
-  <div class="main-1">
+<div class="main-1">
   <div class="fixed">
-  <u>
-    <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
+    <u>
+      <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
         <li><%= f.label :name, id: "search" %></li>
         <li><%= f.text_field :name %></li>
         <li><a><%= f.submit("Scrape") %></a></li>
-    <% end %>
-  </u>
-  <ul>
-    <% @artists.each do |artist| %>
-      <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
-    <% end %>
-  </u>
-</div>
+      <% end %>
+    </u>
+    <ul>
+      <% @artists.each do |artist| %>
+        <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
+      <% end %>
+    </u>
   </div>
-
-
-
+</div>
 <div class="main-2">
-
 <div class="parallax-container">
   <div class="parallax">
     <% if @images.blank? %>
@@ -31,34 +25,31 @@
         <% end %>
     <% end %>
   </div>
-
-
-
-
-  </div>
+</div>
 <div class="section black">
   <div class="row container">
     <h2><%= @artist.name %></h2>
-          <% if @wikiscrape.blank? %>
-            <h3> Couldn't find biography of <%= @artist.name %> </h3>
-          <% else %>
-            <% @wikiscrape.each do |a| %>
-            <div class="col s6"><p><%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %></p></div>
-            <div class="col s6"><p><%= a.css('p')[1].text%></p></div>
-            <% end %>
-          <% end %>
-      </div>
+      <% if @wikiscrape.blank? %>
+        <h3> Couldn't find biography of <%= @artist.name %> </h3>
+      <% else %>
+      <% @wikiscrape.each do |a| %>
+        <div class="col s6"><p><%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %></p></div>
+        <div class="col s6"><p><%= a.css('p')[1].text%></p></div>
+      <% end %>
+    <% end %>
   </div>
+</div>
 <div class="parallax-container">
   <div class="parallax">
     <% if @images.blank? %>
       <%= image_tag ("tc_and_topcats.jpg") %>
     <% else %>
-        <% @images.each do |a| %>
-          <%= image_tag a.css('.artist-content img')[2].attr('src') %>
-        <% end %>
+      <% @images.each do |a| %>
+        <%= image_tag a.css('.artist-content img')[2].attr('src') %>
+      <% end %>
     <% end %>
-  </div></div>
+  </div>
+</div>
 <div class="section black">
   <div class="row container">
     <h2>News</h2>
@@ -102,19 +93,18 @@
         <% end %>
       <% end %>
     </div>
-      </div>
   </div>
-  <div class="parallax-container">
-    <div class="parallax">
-      <% if @images.blank? %>
-      <%= image_tag ("Stock-Concert-Photo.jpg") %>
-      <% else %>
-          <% @images.each do |a| %>
-            <%= image_tag a.css('.artist-content img')[5].attr('src') %>
-          <% end %>
-      <% end %>
-    </div>
-  </div>
-<div class="footer">
 </div>
+<div class="parallax-container">
+  <div class="parallax">
+    <% if @images.blank? %>
+      <%= image_tag ("Stock-Concert-Photo.jpg") %>
+    <% else %>
+      <% @images.each do |a| %>
+      <%= image_tag a.css('.artist-content img')[5].attr('src') %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+  <div class="footer"></div>
 </div>
