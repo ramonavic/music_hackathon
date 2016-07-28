@@ -1,15 +1,25 @@
-<ul id="slide-out" class="side-nav">
-  <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
-      <li><%= f.label :name, id: "search" %></li>
-      <li><%= f.text_field :name %></li>
-      <li><a><%= f.submit("Scrape") %></a></li>
-  <% end %>
-  <% @artists.each do |artist| %>
-    <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
-  <% end %>
 
-  </ul>
-  <!-- <a href="#" data-activates="slide-out" class="button-collapse"><i class="small material-icons">menu</i></a> -->
+
+  <div class="main-1">
+  <div class="fixed">
+  <u>
+    <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
+        <li><%= f.label :name, id: "search" %></li>
+        <li><%= f.text_field :name %></li>
+        <li><a><%= f.submit("Scrape") %></a></li>
+    <% end %>
+  </u>
+  <ul>
+    <% @artists.each do |artist| %>
+      <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
+    <% end %>
+  </u>
+</div>
+  </div>
+
+
+
+<div class="main-2">
 
 <div class="parallax-container">
   <div class="parallax">
@@ -26,7 +36,6 @@
 
 
   </div>
-</div>
 <div class="section black">
   <div class="row container">
     <h2><%= @artist.name %></h2>
@@ -98,7 +107,7 @@
   <div class="parallax-container">
     <div class="parallax">
       <% if @images.blank? %>
-        <%= image_tag ("open_mic_night222.jpg") %>
+      <%= image_tag ("Stock-Concert-Photo.jpg") %>
       <% else %>
           <% @images.each do |a| %>
             <%= image_tag a.css('.artist-content img')[5].attr('src') %>
@@ -107,4 +116,5 @@
     </div>
   </div>
 <div class="footer">
+</div>
 </div>

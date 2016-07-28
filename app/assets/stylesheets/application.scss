@@ -26,7 +26,29 @@ body {
 
 a {
   color: #fff;
+}
+
+a:hover {
   text-decoration: underline;
+
+}
+
+a input[type="submit"] {
+  color: #f000;
+  background-color: inherit;
+  border: 0px solid black;
+  padding: 0px;
+}
+
+input#artist_name:focus{
+  border-bottom: 1px solid #fff;
+
+}
+
+
+label {
+  color: #fff;
+
 }
 
 h2 {
@@ -34,9 +56,42 @@ h2 {
   font-size: 40px;
 }
 
+h3 {
+  font-size: 24px;
+}
+
 p {
   line-height: 24px;
 }
+
+.wrapper {
+  display:flex;
+}
+
+.main-1 {
+  flex:1.5;
+}
+
+.main-2 {
+  flex:5;
+}
+
+.fixed {
+  position: fixed;
+  height: 100vh;
+  color: #fff;
+  padding: 25px;
+}
+
+.fixed li {
+  list-style: none;
+}
+
+.fixed ul {
+  margin-top: 50px;
+}
+
+
 
 .section {
   display:flex;
@@ -47,9 +102,9 @@ p {
 }
 
 .tourdates {
-  height: 400px;
+  height: 480px;
   overflow: hidden;
-
+  line-height: 30px;
 }
 
 .footer {
