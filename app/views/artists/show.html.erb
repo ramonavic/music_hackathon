@@ -1,87 +1,115 @@
-<div id="index-banner" class="parallax-container">
-  <div class="section no-pad-bot">
-    <div class="container">
-      <div class="section" >
-      <div>
-        <h2><%= @artist.name %></h2>
-        <div id="artistimage">
-        <% if @images.blank? %>
-          <%= image_tag ("http://www.festivals.com/img/festivalpic.jpg") %>
-        <% else %>
-            <% @images.each do |a| %>
-              <%= image_tag a.css('.artist-content img').attr('src') %>
-            <% end %>
-        <% end %>
-      </div>
-        <br><br>
-      </div>
-    </div>
+<div class="nav-menu">
+  <div class="fixed">
+    <u>
+      <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
+        <li><%= f.label :name, id: "search" %></li>
+        <li><%= f.text_field :name %></li>
+        <li><a><%= f.submit("Scrape") %></a></li>
+      <% end %>
+    </u>
+    <ul>
+      <% @artists.each do |artist| %>
+        <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
+      <% end %>
+    </u>
+    <ul>
+      <% unless current_page?(root_path) %>
+        <li><%= link_to "Delete #{@artist.name}", @artist, method: :delete, data: { confirm: 'Are you sure?' } %><i class="material-icons right">delete</i></li>
+    <% end %>
+  </ul>
   </div>
-  <div class="parallax"><%= image_tag("Concert.jpg", :alt => "artist", :class => "style_image") %></div>
 </div>
+<div class="parallax-page">
+<div class="parallax-container">
+  <div class="parallax">
+    <% if @images.blank? %>
+      <%= image_tag ("Stock-Concert-Photo.jpg") %>
+    <% else %>
+        <% @images.each do |a| %>
+          <%= image_tag a.css('.artist-content img')[1].attr('src') %>
+        <% end %>
+    <% end %>
+  </div>
 </div>
-</div><br>
-<div class = "container">
-  <div class="section" >
+<div class="section black">
+  <div class="row container">
+    <h2><%= @artist.name %></h2>
+      <% if @wikiscrape.blank? %>
+        <h3> Couldn't find biography of <%= @artist.name %> </h3>
+      <% else %>
+      <% @wikiscrape.each do |a| %>
+        <div class="col s6"><p><%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %></p></div>
+        <div class="col s6"><p><%= a.css('p')[1].text%></p></div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="parallax-container">
+  <div class="parallax">
+    <% if @images.blank? %>
+      <%= image_tag ("tc_and_topcats.jpg") %>
+    <% else %>
+      <% @images.each do |a| %>
+        <%= image_tag a.css('.artist-content img')[2].attr('src') %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="section black">
+  <div class="row container">
+    <h2>News</h2>
+        <% if @mtvnews.blank? %>
+          <h3> Couldn't find news of <%= @artist.name %> </h3>
+        <% else %>
+          <% @mtvnews.each do |a| %>
+          <p><%= raw a.css('.multiline')[0] %></p>
+          <p><%= raw a.css('.multiline')[4] %></p>
+          <p><%= raw a.css('.multiline')[8] %></p>
+          <p><%= raw a.css('.multiline')[12] %></p>
+          <p><%= raw a.css('.multiline')[16] %></p>
+          <p><%= raw a.css('.multiline')[20] %></p>
+          <p><%= raw a.css('.multiline')[24] %></p>
+          <p><%= raw a.css('.multiline')[28] %></p>
+          <p><%= raw a.css('.multiline')[32] %></p>
+          <% end %>
+        <% end %>
+  </div>
+</div>
+<div class="parallax-container">
+  <div class="parallax">
+    <% if @images.blank? %>
+      <%= image_tag ("open_mic_night222.jpg") %>
+    <% else %>
+        <% @images.each do |a| %>
+          <%= image_tag a.css('.artist-content img')[4].attr('src') %>
+        <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="section black">
+  <div class="row container">
     <h2> Tour Dates </h2>
-    <div class="tourdates">
+      <div class="tourdates">
       <% if @mtvscrape.blank? %>
         <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
       <% else %>
         <% @mtvscrape.each do |a| %>
-          <p><%= raw a.css('.content-inner') %></p>
+          <%= raw a.css('.content-inner') %>
         <% end %>
       <% end %>
     </div>
-   </div>
   </div>
 </div>
-<div class="parallax-container valign-wrapper">
-  <div class="section no-pad-bot">
-    <div class="container">
-      <div class="section">
-          <h2> Biography </h2>
-          <p>
-          <% if @wikiscrape.blank? %>
-            <h3> Couldn't find a biography of <%= @artist.name %> </h3>
-          <% else %>
-            <% @wikiscrape.each do |a| %>
-              <%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %>
-              <%= a.css('p')[1].text %> <br><br>
-              <%= a.css('p')[2].text %> <br><br>
-              <%= a.css('p')[3].text %> <br><br>
-            <% end %>
-          <% end %>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="parallax"><%= image_tag("festival.jpg", :alt => "artist", :class => "style_image") %></div>
-</div>
-<div class="container">
-  <div class="section">
-    <div class="row">
-      <div class="col s12">
-        <div>
-        <h2>News Feed</h2>
-        <% if @mtvnews.blank? %>
-          <h3> Couldn't find any news of <%= @artist.name %> </h3>
-        <% else %>
-          <% @mtvnews.each do |a| %>
-            <p><%= raw a.css('.multiline') %></p><br>
-          <% end %>
-        <% end %>
-        </div>
-      </div>
-    </div>
+<div class="parallax-container">
+  <div class="parallax">
+    <% if @images.blank? %>
+      <%= image_tag ("Stock-Concert-Photo.jpg") %>
+    <% else %>
+      <% @images.each do |a| %>
+      <%= image_tag a.css('.artist-content img')[5].attr('src') %>
+      <% end %>
+    <% end %>
   </div>
 </div>
-<div class="parallax-container valign-wrapper">
-  <div class="section no-pad-bot">
-    <div class="container">
-      <div class="row center">
-      </div>
-    </div>
-  </div>
-  <div class="parallax"><%= image_tag("festivalpic.jpg", :alt => "artist", :class => "style_image") %></div>
+  <div class="footer"></div>
 </div>
