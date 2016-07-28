@@ -8,15 +8,15 @@
       <% end %>
     </u>
     <ul>
-      <% @artists.each do |artist| %>
-        <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
-      <% end %>
-    </u>
-    <ul>
       <% unless current_page?(root_path) %>
         <li><%= link_to "Delete #{@artist.name}", @artist, method: :delete, data: { confirm: 'Are you sure?' } %><i class="material-icons right">delete</i></li>
     <% end %>
   </ul>
+    <ul>
+      <% @artists.each do |artist| %>
+        <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
+      <% end %>
+    </u>
   </div>
 </div>
 <div class="parallax-page">
@@ -59,7 +59,7 @@
   <div class="row container">
     <h2>News</h2>
         <% if @mtvnews.blank? %>
-          <h3> Couldn't find news of <%= @artist.name %> </h3>
+          <h3> Couldn't find MTV news of <%= @artist.name %> </h3>
         <% else %>
           <% @mtvnews.each do |a| %>
           <p><%= raw a.css('.multiline')[0] %></p>
@@ -94,7 +94,7 @@
         <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
       <% else %>
         <% @mtvscrape.each do |a| %>
-          <%= raw a.css('.content-inner') %>
+          <%= raw a.css('.content-inner')[1] %>
         <% end %>
       <% end %>
     </div>
