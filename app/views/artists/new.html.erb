@@ -1,4 +1,4 @@
-<div class="main-1">
+<div class="nav-menu">
   <div class="fixed">
     <u>
       <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
@@ -8,13 +8,18 @@
       <% end %>
     </u>
     <ul>
+      <% unless current_page?(root_path) %>
+        <li><%= link_to "Delete #{@artist.name}", @artist, method: :delete, data: { confirm: 'Are you sure?' } %><i class="material-icons right">delete</i></li>
+    <% end %>
+  </ul>
+    <ul>
       <% @artists.each do |artist| %>
         <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
       <% end %>
     </u>
   </div>
 </div>
-<div class="main-2">
+<div class="parallax-page">
 <div class="parallax-container">
   <div class="parallax">
     <% if @images.blank? %>

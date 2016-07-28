@@ -68,16 +68,16 @@ p {
   display:flex;
 }
 
-.main-1 {
+.nav-menu {
   flex:1.5;
 }
 
-.main-2 {
+.parallax-page {
   flex:5;
 }
 
 .fixed {
-  position: fixed;
+  // position: fixed;
   height: 100vh;
   color: #fff;
   padding: 25px;
