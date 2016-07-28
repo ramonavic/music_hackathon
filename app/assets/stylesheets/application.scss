@@ -15,72 +15,50 @@
  */
 
  @import "materialize/components/color";
- $primary-color: color("blue", "lighten-2") !default;
  @import "materialize";
  @import "materialize/extras/nouislider";
 
- nav .nav-wrapper form, nav .nav-wrapper form .input-field{
-height: 100%;
+body {
+  background-color: black;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+
+
 }
 
- nav ul a,
- nav .brand-logo {
-   color: #444;
- }
+h2 {
+  font-weight: bold;
+  font-size: 40px;
+}
 
- p {
-   line-height: 2rem;
- }
+p {
+  line-height: 24px;
+}
 
- .button-collapse {
-   color: #26a69a;
- }
+.section {
+  display:flex;
+  align-items: center; 
+  height: 650px;
+  background-color: #000;
+  color: #f0f0f0;
+}
 
- .parallax-container {
-   min-height: 380px;
-   line-height: 0;
-   height: auto;
-   color: black;
-   opacity: 0.6;
+.footer {
+  height: 200px;
+  background-color: #000;
+}
 
- }
-   .parallax-container .section {
-     width: 100%;
-   }
+.parallax-container {
+  overflow: hidden;
+}
 
- @media only screen and (max-width : 992px) {
-   .parallax-container .section {
-     position: absolute;
-     top: 40%;
-   }
-   #index-banner .section {
-     top: 10%;
-   }
- }
+a.button-collapse {
+  color: white;
+  background-color: inherit;
+  display: inline;
+}
 
- @media only screen and (max-width : 600px) {
-   #index-banner .section {
-     top: 0;
-   }
- }
-
- .icon-block {
-   padding: 0 15px;
- }
- .icon-block .material-icons {
-   font-size: inherit;
- }
-
- #artistimage img{
-   max-height: 400px;
-   max-width: 600px;
- }
-
- #tourdates {
-   max-height: 400px;
-   max-width: 400px;
- }
-
- footer.page-footer {
-   margin: 0;
- }
+img {
+    -webkit-filter: grayscale(100%) blur(3px); /* Chrome, Safari, Opera */
+    filter: grayscale(100%) blur(3px);
+}

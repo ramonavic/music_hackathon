@@ -1,117 +1,70 @@
+<ul id="slide-out" class="side-nav">
+  <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
+      <li><%= f.label :name, id: "search" %></li>
+      <li><%= f.text_field :name %></li>
+      <li><a><%= f.submit("Scrape") %></a></li>
+  <% end %>
+  <% @artists.each do |artist| %>
+    <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
+  <% end %>
 
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="small material-icons">menu</i></a>
 
-
-<div id="index-banner" class="parallax-container">
-  <div class="section no-pad-bot">
-    <div class="container">
-      <div class="section" >
-      <div>
-      <%= link_to 'Delete', @artist, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <div>
-        <h2><%= @artist.name %></h2>
-        <div id="artistimage">
-        <% if @images.blank? %>
-          <%= image_tag ("http://www.festivals.com/img/festivalpic.jpg") %>
-        <% else %>
-            <% @images.each do |a| %>
-              <%= image_tag a.css('.artist-content img').attr('src') %>
-            <% end %>
+<div class="parallax-container">
+  <div class="parallax">
+    <% if @images.blank? %>
+      <%= image_tag ("http://www.festivals.com/img/festivalpic.jpg") %>
+    <% else %>
+        <% @images.each do |a| %>
+          <%= image_tag a.css('.artist-content img')[1].attr('src') %>
         <% end %>
-      </div>
-<!--
-        <br><br>
-        <h2> Biography </h2>
-        <% if @wikiscrape.blank? %>
-          <h3> Couldn't find biography of <%= @artist.name %> </h3>
-        <% else %>
-          <% @wikiscrape.each do |a| %>
-            <%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %>
-            <%= a.css('p')[1].text %> <br><br>
-            <%= a.css('p')[2].text %> <br><br>
-            <%= a.css('p')[3].text %> <br><br>
-          <% end %>
-        <% end %>
-
-======= -->
-        <br><br>
-      </div>
-    </div>
+    <% end %>
   </div>
 
 
 
 
-  <div class="parallax"><%= image_tag("festivalpic.jpg", :alt => "artist") %></div>
-</div>
-</div>
-</div><br>
-<div class = "container">
-  <div class="section" >
-    <h2> Tour Dates </h2>
-    <div id="tourdates">
-      <% if @mtvscrape.blank? %>
-        <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
-      <% else %>
-        <% @mtvscrape.each do |a| %>
-          <%= raw a.css('.content-inner')[1] %>
-        <% end %>
-      <% end %>
-   </div>
   </div>
 </div>
-<div class="parallax-container valign-wrapper">
-  <div class="section no-pad-bot">
-    <div class="container">
-      <div class="section" >
-          <h2> Biography </h2>
-          <p>
+<div class="section black">
+  <div class="row container">
+    <h2><%= @artist.name %></h2>
           <% if @wikiscrape.blank? %>
             <h3> Couldn't find biography of <%= @artist.name %> </h3>
           <% else %>
             <% @wikiscrape.each do |a| %>
-              <%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %>
-              <%= a.css('p')[1].text %> <br><br>
-              <%= a.css('p')[2].text %> <br><br>
-              <%= a.css('p')[3].text %> <br><br>
+            <div class="col s6"><p><%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %></p></div>
+            <div class="col s6"><p><%= a.css('p')[1].text%></p></div>
             <% end %>
           <% end %>
-        </p>
       </div>
-    </div>
   </div>
-  <div class="parallax"><%= image_tag("festival.jpg", :alt => "artist") %></div>
-</div>
-<div class="container">
-  <div class="section">
-    <div class="row">
-      <div class="col s12 center">
-        <div>
-        <h2>News</h2>
-        <% if @mtvnews.blank? %>
-          <h3> Couldn't find MTV news of <%= @artist.name %> </h3>
-        <% else %>
-          <% @mtvnews.each do |a| %>
-            <p><%= raw a.css('.multiline') %></p>
-          <% end %>
+<div class="parallax-container">
+  <div class="parallax">
+    <% if @images.blank? %>
+      <%= image_tag ("http://www.festivals.com/img/festivalpic.jpg") %>
+    <% else %>
+        <% @images.each do |a| %>
+          <%= image_tag a.css('.artist-content img')[2].attr('src') %>
         <% end %>
-        </div>
-      </div>
-    </div>
+    <% end %>
+  </div></div>
+<div class="section black">
+  <div class="row container">
+    <h2 class="header">Tourdates</h2>
+    <p class="white-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
   </div>
 </div>
-
-
-
-
-
-
-<div class="parallax-container valign-wrapper">
-  <div class="section no-pad-bot">
-    <div class="container">
-      <div class="row center">
-      </div>
-    </div>
-  </div>
-
-  <div class="parallax"><%= image_tag("festivalpic.jpg", :alt => "artist") %></div>
+<div class="parallax-container">
+  <div class="parallax">
+    <% if @images.blank? %>
+      <%= image_tag ("http://www.festivals.com/img/festivalpic.jpg") %>
+    <% else %>
+        <% @images.each do |a| %>
+          <%= image_tag a.css('.artist-content img')[4].attr('src') %>
+        <% end %>
+    <% end %>
+  </div></div>
+<div class="footer">
 </div>
