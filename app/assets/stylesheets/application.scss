@@ -22,8 +22,11 @@ body {
   background-color: black;
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
+}
 
-
+a {
+  color: #fff;
+  text-decoration: underline;
 }
 
 h2 {
@@ -37,14 +40,20 @@ p {
 
 .section {
   display:flex;
-  align-items: center; 
+  align-items: center;
   height: 650px;
   background-color: #000;
   color: #f0f0f0;
 }
 
+.tourdates {
+  height: 400px;
+  overflow: hidden;
+
+}
+
 .footer {
-  height: 200px;
+  height: 150px;
   background-color: #000;
 }
 
