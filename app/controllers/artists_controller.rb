@@ -7,7 +7,6 @@ class ArtistsController < ApplicationController
   def index
     @artists = Artist.all
     @artist = Artist.find(params[:id])
-
   end
 
   def show
@@ -37,7 +36,7 @@ class ArtistsController < ApplicationController
     case response2
     when Net::HTTPSuccess
       data2 = Nokogiri::HTML(open(mtvurl))
-      @mtvscrape = data2.css(".tourdate-item")
+      @mtvscrape = data2.css(".tourdate-item").take(6)
       @mtvnews = data2.css("#profile_latest_news")
     when Net::HTTPRedirection
       @mtvscrape = ""
@@ -65,7 +64,8 @@ class ArtistsController < ApplicationController
     when Net::HTTPRedirection
       @images = ""
     end
-end
+
+  end
 
   def new
     @artists = Artist.all
@@ -77,15 +77,15 @@ end
     @artist = Artist.new(params.require(:artist).permit(:name))
 
     if @artist.save
-      redirect_to root_path
+      redirect_to artist_path(@artist)
     end
   end
 
   def destroy
-      @artist = Artist.find(params[:id])
-      @artist.destroy
+    @artist = Artist.find(params[:id])
+    @artist.destroy
 
-      redirect_to root_path
-    end
+    redirect_to root_path
+  end
 
 end

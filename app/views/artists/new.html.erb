@@ -1,6 +1,7 @@
 <div class="nav-menu">
   <div class="fixed">
     <u>
+        <li>Search favorite artist:</li>
       <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
         <li><%= f.label :name, id: "search" %></li>
         <li><%= f.text_field :name %></li>
@@ -33,7 +34,7 @@
 </div>
 <div class="section black">
   <div class="row container">
-    <h2><%= @artist.name %></h2>
+    <h2> Biography </h2>
       <% if @wikiscrape.blank? %>
         <h3> Couldn't find biography of <%= @artist.name %> </h3>
       <% else %>
@@ -89,7 +90,6 @@
 <div class="section black">
   <div class="row container">
     <h2> Tour Dates </h2>
-      <div class="tourdates">
       <% if @mtvscrape.blank? %>
         <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
       <% else %>
