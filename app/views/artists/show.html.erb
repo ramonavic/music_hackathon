@@ -35,7 +35,7 @@
 <div class="section black">
   <div class="row container">
     <div class="biography">
-    <h2><%= @artist.name %></h2>
+      <h2> Biography </h2>
       <% if @wikiscrape.blank? %>
         <h3> Couldn't find biography of <%= @artist.name %> </h3>
       <% else %>
@@ -62,7 +62,7 @@
   <div class="row container">
     <h2>News</h2>
         <% if @mtvnews.blank? %>
-          <h3> Couldn't find MTV news of <%= @artist.name %> </h3>
+          <h3> Couldn't find news of <%= @artist.name %> </h3>
         <% else %>
           <% @mtvnews.each do |a| %>
           <p><%= raw a.css('.multiline')[0] %></p>
@@ -92,15 +92,13 @@
 <div class="section black">
   <div class="row container">
     <h2> Tour Dates </h2>
-      <div class="tourdates">
       <% if @mtvscrape.blank? %>
         <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
       <% else %>
         <% @mtvscrape.each do |a| %>
-          <%= raw a.css('.content-inner') %>
+          <li><%= raw a.css('.content-inner') %></li>
         <% end %>
       <% end %>
-    </div>
   </div>
 </div>
 <div class="parallax-container">

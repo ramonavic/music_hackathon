@@ -36,7 +36,7 @@ class ArtistsController < ApplicationController
     case response2
     when Net::HTTPSuccess
       data2 = Nokogiri::HTML(open(mtvurl))
-      @mtvscrape = data2.css(".tourdate-item").take(10)
+      @mtvscrape = data2.css(".tourdate-item").take(6)
       @mtvnews = data2.css("#profile_latest_news")
     when Net::HTTPRedirection
       @mtvscrape = ""

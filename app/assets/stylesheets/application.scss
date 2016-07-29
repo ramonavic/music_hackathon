@@ -64,10 +64,9 @@ body {
   color: #f0f0f0;
 }
 
-.tourdates {
-  height: 450px;
-  overflow: hidden;
-  line-height: 30px;
+.section li {
+  list-style: none;
+  margin-bottom: 10px;
 }
 
 .footer {
