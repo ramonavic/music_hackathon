@@ -15,72 +15,109 @@
  */
 
  @import "materialize/components/color";
- $primary-color: color("blue", "lighten-2") !default;
  @import "materialize";
  @import "materialize/extras/nouislider";
 
- nav .nav-wrapper form, nav .nav-wrapper form .input-field{
-height: 100%;
+body {
+  background-color: black;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
 }
 
- nav ul a,
- nav .brand-logo {
-   color: #444;
- }
+.wrapper {
+  display:flex;
+}
 
- p {
-   line-height: 2rem;
- }
+.nav-menu {
+  flex:1.5;
+}
 
- .button-collapse {
-   color: #26a69a;
- }
+.parallax-page {
+  flex:5;
+}
 
- .parallax-container {
-   min-height: 380px;
-   line-height: 0;
-   height: auto;
-   color: black;
-   opacity: 0.6;
+.parallax-container {
+  overflow: hidden;
+}
 
- }
-   .parallax-container .section {
-     width: 100%;
-   }
+.fixed {
+  // position: fixed;
+  height: 100vh;
+  color: #fff;
+  padding: 25px;
+}
 
- @media only screen and (max-width : 992px) {
-   .parallax-container .section {
-     position: absolute;
-     top: 40%;
-   }
-   #index-banner .section {
-     top: 10%;
-   }
- }
+.fixed li {
+  list-style: none;
+}
 
- @media only screen and (max-width : 600px) {
-   #index-banner .section {
-     top: 0;
-   }
- }
+.fixed ul {
+  margin-top: 50px;
+}
 
- .icon-block {
-   padding: 0 15px;
- }
- .icon-block .material-icons {
-   font-size: inherit;
- }
+.section {
+  display:flex;
+  align-items: center;
+  height: 650px;
+  background-color: #000;
+  color: #f0f0f0;
+}
 
- #artistimage img{
-   max-height: 400px;
-   max-width: 600px;
- }
+.tourdates {
+  height: 480px;
+  overflow: hidden;
+  line-height: 30px;
+}
 
- #tourdates {
-   max-height: 400px;
-   max-width: 400px;
- }
+.footer {
+  height: 150px;
+  background-color: #000;
+}
 
- footer.page-footer {
-   margin: 0;
- }
+h2 {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+p {
+  line-height: 24px;
+}
+
+a.button-collapse {
+  color: white;
+  background-color: inherit;
+  display: inline;
+}
+
+a {
+  color: #fff;
+}
+
+a:hover {
+  text-decoration: underline;
+
+}
+
+a input[type="submit"] {
+  color: #f000;
+  background-color: inherit;
+  border: 0px solid black;
+  padding: 0px;
+}
+
+input#artist_name:focus{
+  border-bottom: 1px solid #fff;
+}
+
+label {
+  color: #fff;
+}
+
+img {
+    -webkit-filter: grayscale(100%) blur(3px); /* Chrome, Safari, Opera */
+    filter: grayscale(100%) blur(3px);
+}

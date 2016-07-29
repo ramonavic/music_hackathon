@@ -68,14 +68,12 @@ class ArtistsController < ApplicationController
 end
 
   def new
-     @artists = Artist.all
-
+    @artists = Artist.all
     @artist = Artist.new
   end
 
   def create
-     @artists = Artist.all
-
+    @artists = Artist.all
     @artist = Artist.new(params.require(:artist).permit(:name))
 
     if @artist.save
@@ -84,12 +82,10 @@ end
   end
 
   def destroy
-    @artists = Artist.all
+      @artist = Artist.find(params[:id])
+      @artist.destroy
 
-    @artist = Artist.find(params[:id])
-    @artist.destroy
-
-    redirect_to root_path
-  end
+      redirect_to root_path
+    end
 
 end
