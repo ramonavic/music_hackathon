@@ -1,7 +1,16 @@
 source 'https://rubygems.org'
 
+gem 'sidekiq'
+
 gem 'materialize-sass'
 gem 'devise', '~> 3.5'
+<<<<<<< HEAD
+||||||| merged common ancestors
+
+=======
+gem 'rails_12factor', group: :production
+
+>>>>>>> 4e20c7f475adb3918fa1e89bb920f0f84ddc2994
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
@@ -14,8 +23,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'jquery-rails'
-# Use jquery as the JavaScript library
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
