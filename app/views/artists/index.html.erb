@@ -1,7 +1,7 @@
 <div class="nav-menu">
   <div class="fixed">
     <u>
-        <li>Search favorite artist:</li>
+      <li class="search_artist">Search favorite artist</li>
       <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
         <li><%= f.label :name, id: "search" %></li>
         <li><%= f.text_field :name %></li>
@@ -9,13 +9,9 @@
       <% end %>
     </u>
     <ul>
-      <% unless current_page?(root_path) %>
-        <li><%= link_to "Delete #{@artist.name}", @artist, method: :delete, data: { confirm: 'Are you sure?' } %><i class="material-icons right">delete</i></li>
-    <% end %>
-  </ul>
-    <ul>
       <% @artists.each do |artist| %>
-        <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
+      <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> &nbsp;&nbsp;
+        <%= link_to "x", artist, method: :delete, data: { confirm: 'Are you sure?' } %></li>
       <% end %>
     </u>
   </div>

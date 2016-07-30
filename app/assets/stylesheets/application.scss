@@ -46,11 +46,8 @@ body {
   height: 100vh;
   color: #fff;
   padding: 25px;
-}
-
-.fixed li {
-  list-style: none;
-
+  background-color: black;
+  width: 20%
 }
 
 .fixed ul {
@@ -101,6 +98,7 @@ a.button-collapse {
 
 a {
   color: #fff;
+  outline: none;
 }
 
 a:hover {
@@ -112,15 +110,25 @@ a input[type="submit"] {
   color: #f000;
   background-color: inherit;
   border: 0px solid black;
-  padding: 0px;
+  padding-left: 0px;
+  outline: none;
+
 }
 
-input#artist_name:focus{
+input#artist_name {
   border-bottom: 1px solid #fff;
+  width: 90%;
+
 }
 
 label {
   color: #fff;
+}
+
+.search_artist {
+  font-size: 18px;
+  margin-bottom: 43px;
+
 }
 
 img {

@@ -6,7 +6,7 @@
 <div class="nav-menu">
   <div class="fixed">
     <u>
-        <li>Search favorite artist:</li>
+      <li class="search_artist">Search favorite artist</li>
       <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
         <li><%= f.label :name, id: "search" %></li>
         <li><%= f.text_field :name %></li>
@@ -14,13 +14,9 @@
       <% end %>
     </u>
     <ul>
-      <% unless current_page?(root_path) %>
-        <li><%= link_to "Delete #{@artist.name}", @artist, method: :delete, data: { confirm: 'Are you sure?' } %><i class="material-icons right">delete</i></li>
-    <% end %>
-  </ul>
-    <ul>
       <% @artists.each do |artist| %>
-        <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> </li>
+      <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> &nbsp;&nbsp;
+        <%= link_to "x", artist, method: :delete, data: { confirm: 'Are you sure?' } %></li>
       <% end %>
     </u>
   </div>
@@ -57,7 +53,7 @@
       <%= image_tag ("tc_and_topcats.jpg") %>
     <% else %>
       <% @images.each do |a| %>
-      <%= image_tag a.css('.artist-content img')[1].attr('src') %>
+      <%= image_tag a.css('.artist-content img')[2].attr('src') %>
       <% end %>
     <% end %>
   </div>
@@ -103,7 +99,7 @@
         <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
       <% else %>
         <% @mtvscrape.each do |a| %>
-          <li><%= raw a.css('.content-inner') %></li>
+          <li><%= raw a.css('.content-inner')[1] %></li>
         <% end %>
       <% end %>
     </div>
