@@ -4,13 +4,9 @@ gem 'sidekiq'
 
 gem 'materialize-sass'
 gem 'devise', '~> 3.5'
-<<<<<<< HEAD
-||||||| merged common ancestors
-
-=======
+gem 'jquery-rails'
 gem 'rails_12factor', group: :production
 
->>>>>>> 4e20c7f475adb3918fa1e89bb920f0f84ddc2994
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
