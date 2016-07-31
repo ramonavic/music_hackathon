@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 gem 'sidekiq'
 
 gem 'materialize-sass'
-gem 'jquery-rails'
 gem 'devise', '~> 3.5'
+gem 'jquery-rails'
 gem 'rails_12factor', group: :production
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
