@@ -65,6 +65,15 @@ class ArtistsController < ApplicationController
       @images = ""
     end
 
+    @imgscraper = Scrapix::GoogleImages.new #
+
+    imgscraper.query = "#{render.parameterize.to_s}"
+    imgscraper.total = 5
+    imgscraper.find
+
+    imgscraper.options = { safe: false, size: "large" }
+    imgscraper.find
+
   end
 
   def new
