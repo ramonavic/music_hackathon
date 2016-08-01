@@ -24,13 +24,14 @@
 <div class="parallax-page">
 <div class="parallax-container">
   <div class="parallax">
-    <% if @images.blank? %>
+    <!-- <% if @images.blank? %>
       <%= image_tag ("Stock-Concert-Photo.jpg") %>
     <% else %>
         <% @images.each do |a| %>
         <%= image_tag a.css('.artist-content img')[1].attr('src') %>
         <% end %>
-    <% end %>
+    <% end %> -->
+    <%= @imgscraper %>
   </div>
 </div>
 <div class="section">
