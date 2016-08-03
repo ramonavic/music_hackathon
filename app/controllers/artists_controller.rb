@@ -4,6 +4,7 @@ class ArtistsController < ApplicationController
   require 'rubygems'
   require 'net/http'
   require 'google/apis/customsearch_v1'
+  require 'twitter'
 
   def index
     @artists = Artist.all
@@ -15,6 +16,15 @@ class ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
 
     render = @artist.name.downcase.capitalize
+
+    client = Twitter::REST::Client.new do |config|
+       config.consumer_key = 'kg3pJabnU2yMueHyhOYbSPjen'
+       config.consumer_secret = '6KqvwuQ5EUBBmhvtdslyoaaNJ3m5bRpDB2caUX8cwHSxmELzwl'
+       config.access_token = '57038833-FcB0uAbMK7f4ozy6TGI6XxrSP9EsMYfhTOWwIofUO'
+       config.access_token_secret = '2gHIH1NE3KO3cijCXZDww9bF6PtCDjHUGjkvdwMTpHBZH'
+    end
+
+    @tweet = client.user_timeline("#{render}", result_type: "recent").take(3)
 
     gsearch = Google::Apis::CustomsearchV1::CustomsearchService.new
     gsearch.key = ENV["GOOGLE_SEARCH_KEY"]
