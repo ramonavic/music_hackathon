@@ -3,6 +3,7 @@ class ArtistsController < ApplicationController
   require 'open-uri'
   require 'rubygems'
   require 'net/http'
+  require 'google/apis/customsearch_v1'
 
   def index
     @artists = Artist.all
@@ -14,6 +15,18 @@ class ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
 
     render = @artist.name.downcase.capitalize
+
+    gsearch = Google::Apis::CustomsearchV1::CustomsearchService.new
+    gsearch.key = 'AIzaSyCDzf4dZYHWGkAXWOCmUF2f7y0ziaRqXdw'
+    cx = '012455846447051243154:rnrbertdyu4'
+
+    @results = gsearch.list_cses(
+      render,
+      cx: cx,
+      num: 4,
+      img_size: 'xlarge',
+      search_type: 'image'
+    )
 
     wikiurl = "https://en.wikipedia.org/wiki/#{render.to_s.tr(' ', '_')}"
     response1 = Net::HTTP.get_response(URI(wikiurl))
