@@ -35,9 +35,12 @@
   <div class="row container">
     <div class="biography">
       <h2>Twitter Feed</h2>
+      <% if @tweet.blank? %><
+        <p> We couldn't find any tweets of <%= @artist.name %> </p>
         <% @tweet.collect do |tweet| %>
           <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
         <% end %>
+      <% end %>
       <h2> Biography </h2>
       <% if @wikiscrape.blank? %>
         <h3> Couldn't find biography of <%= @artist.name %> </h3>
