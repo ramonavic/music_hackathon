@@ -132,6 +132,6 @@ label {
 }
 
 img {
-    -webkit-filter: grayscale(100%) blur(3px); /* Chrome, Safari, Opera */
-    filter: grayscale(100%) blur(3px);
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
 }
