@@ -18,7 +18,7 @@ class ArtistsController < ApplicationController
 
     gsearch = Google::Apis::CustomsearchV1::CustomsearchService.new
     gsearch.key = ENV["GOOGLE_SEARCH_KEY"]
-    cx = '012455846447051243154:rnrbertdyu4'
+    cx = ENV["GOOGLE_CX"]
 
     @results = gsearch.list_cses(
       render,
