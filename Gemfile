@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'sidekiq'
+gem 'figaro'
 
 gem 'materialize-sass'
 gem 'devise', '~> 3.5'
@@ -30,7 +30,7 @@ gem 'twitter'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Unicorn as the app server
 # gem 'unicorn'
-gem 'google-api-client', '0.9' 
+gem 'google-api-client', '0.9'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
