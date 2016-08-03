@@ -17,7 +17,7 @@ class ArtistsController < ApplicationController
     render = @artist.name.downcase.capitalize
 
     gsearch = Google::Apis::CustomsearchV1::CustomsearchService.new
-    gsearch.key = 'AIzaSyCDzf4dZYHWGkAXWOCmUF2f7y0ziaRqXdw'
+    gsearch.key = ENV["GOOGLE_SEARCH_KEY"]
     cx = '012455846447051243154:rnrbertdyu4'
 
     @results = gsearch.list_cses(
