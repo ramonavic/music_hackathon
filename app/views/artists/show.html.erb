@@ -24,8 +24,10 @@
 <div class="parallax-page">
 <div class="parallax-container">
   <div class="parallax">
-    <% @results.items.each do |item| %>
-      <%= image_tag item.link[0] %>
+    <% if @results.blank? %>
+      <%= image_tag ("parallax2-1.jpg") %>
+    <% else %>
+      <%= image_tag @results.items[0].link %>
     <% end %>
   </div>
 </div>
@@ -45,12 +47,10 @@
 </div>
 <div class="parallax-container">
   <div class="parallax">
-    <% if @images.blank? %>
+    <% if @results.blank? %>
       <%= image_tag ("tc_and_topcats.jpg") %>
     <% else %>
-      <% @images.each do |a| %>
-      <%= image_tag a.css('.artist-content img')[2].attr('src') %>
-      <% end %>
+        <%= image_tag @results.items[1].link %>
     <% end %>
   </div>
 </div>
@@ -78,12 +78,10 @@
 </div>
 <div class="parallax-container">
   <div class="parallax">
-    <% if @images.blank? %>
+    <% if @results.blank? %>
       <%= image_tag ("open_mic_night222.jpg") %>
     <% else %>
-        <% @images.each do |a| %>
-        <%= image_tag a.css('.artist-content img')[4].attr('src') %>
-        <% end %>
+      <%= image_tag @results.items[2].link %>
     <% end %>
   </div>
 </div>
@@ -103,12 +101,10 @@
 </div>
 <div class="parallax-container">
   <div class="parallax">
-    <% if @images.blank? %>
+    <% if @results.blank? %>
       <%= image_tag ("Stock-Concert-Photo.jpg") %>
     <% else %>
-      <% @images.each do |a| %>
-      <%= image_tag a.css('.artist-content img')[5].attr('src') %>
-      <% end %>
+      <%= image_tag @results.items[3].link %>
     <% end %>
   </div>
 </div>
