@@ -23,7 +23,7 @@ class ArtistsController < ApplicationController
       config.access_token = ENV["TWITTER_ACCES_TOKEN"]
       config.access_token_secret = ENV["TWITTER_ACCES_TOKEN_SECRET"]
     end
-  
+
     @tweet = client.user_timeline("#{render}", result_type: "recent").take(3)
 
     gsearch = Google::Apis::CustomsearchV1::CustomsearchService.new
