@@ -17,99 +17,112 @@
   </div>
 </div>
 <div class="parallax-page">
-<div class="parallax-container">
-  <div class="parallax">
-    <% if @images.blank? %>
-      <%= image_tag ("Stock-Concert-Photo.jpg") %>
-    <% else %>
-        <% @images.each do |a| %>
-        <%= image_tag a.css('.artist-content img')[1].attr('src') %>
-        <% end %>
-    <% end %>
-  </div>
-</div>
-<div class="section">
-  <div class="row container">
-    <div class="biography">
-      <h2> BIOGRAPHY </h2>
-      <% if @wikiscrape.blank? %>
-        <h3> Couldn't find biography of <%= @artist.name %> </h3>
+  <div class="parallax-container">
+    <div class="parallax">
+      <% if @images.blank? %>
+        <%= image_tag ("Stock-Concert-Photo.jpg") %>
       <% else %>
-      <% @wikiscrape.each do |a| %>
-        <p><%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %></p>
-      <% end %>
-    <% end %>
-  </div>
-  </div>
-</div>
-<div class="parallax-container">
-  <div class="parallax">
-    <% if @images.blank? %>
-      <%= image_tag ("tc_and_topcats.jpg") %>
-    <% else %>
-      <% @images.each do |a| %>
-      <%= image_tag a.css('.artist-content img')[2].attr('src') %>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-<div class="section black">
-  <div class="row container">
-    <div class="news">
-    <h2>NEWS</h2>
-        <% if @mtvnews.blank? %>
-          <h3> Couldn't find news of <%= @artist.name %> </h3>
-        <% else %>
-          <% @mtvnews.each do |a| %>
-          <p><%= raw a.css('.multiline')[0] %></p>
-          <p><%= raw a.css('.multiline')[4] %></p>
-          <p><%= raw a.css('.multiline')[8] %></p>
-          <p><%= raw a.css('.multiline')[12] %></p>
-          <p><%= raw a.css('.multiline')[16] %></p>
-          <p><%= raw a.css('.multiline')[20] %></p>
-          <p><%= raw a.css('.multiline')[24] %></p>
-          <p><%= raw a.css('.multiline')[28] %></p>
-          <p><%= raw a.css('.multiline')[32] %></p>
+          <% @images.each do |a| %>
+          <%= image_tag a.css('.artist-content img')[1].attr('src') %>
           <% end %>
-        <% end %>
-      </div>
+      <% end %>
+    </div>
   </div>
-</div>
-<div class="parallax-container">
-  <div class="parallax">
-    <% if @images.blank? %>
-      <%= image_tag ("open_mic_night222.jpg") %>
-    <% else %>
-        <% @images.each do |a| %>
-        <%= image_tag a.css('.artist-content img')[4].attr('src') %>
+  <div class="section">
+    <div class="row container">
+      <div class="biography">
+        <h2> BIOGRAPHY </h2>
+        <% if @wikiscrape.blank? %>
+          <h3> Couldn't find biography of <%= @artist.name %> </h3>
+        <% else %>
+        <% @wikiscrape.each do |a| %>
+          <p><%= a.css('p')[0].text unless a.css('p')[0].text.length < 100  %></p>
         <% end %>
-    <% end %>
+      <% end %>
+    </div>
+    </div>
   </div>
-</div>
-<div class="section black">
-  <div class="row container">
-    <div class="tourdates">
-    <h2>TOUR DATES</h2>
-      <% if @mtvscrape.blank? %>
-        <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
+  <div class="parallax-container">
+    <div class="parallax">
+      <% if @images.blank? %>
+        <%= image_tag ("tc_and_topcats.jpg") %>
       <% else %>
-        <% @mtvscrape.each do |a| %>
-          <li><%= raw a.css('.content-inner') %></li>
+        <% @images.each do |a| %>
+        <%= image_tag a.css('.artist-content img')[2].attr('src') %>
         <% end %>
       <% end %>
     </div>
   </div>
-</div>
-<div class="parallax-container">
-  <div class="parallax">
-    <% if @images.blank? %>
-      <%= image_tag ("Music_Festival_wallpaper.jpg") %>
-    <% else %>
-      <% @images.each do |a| %>
-      <%= image_tag a.css('.artist-content img')[5].attr('src') %>
-      <% end %>
-    <% end %>
+  <div class="section black">
+    <div class="row container">
+      <div class="news">
+      <h2>NEWS</h2>
+          <% if @mtvnews.blank? %>
+            <h3> Couldn't find news of <%= @artist.name %> </h3>
+          <% else %>
+            <% @mtvnews.each do |a| %>
+            <p><%= raw a.css('.multiline')[0] %></p>
+            <p><%= raw a.css('.multiline')[4] %></p>
+            <p><%= raw a.css('.multiline')[8] %></p>
+            <p><%= raw a.css('.multiline')[12] %></p>
+            <p><%= raw a.css('.multiline')[16] %></p>
+            <p><%= raw a.css('.multiline')[20] %></p>
+            <p><%= raw a.css('.multiline')[24] %></p>
+            <p><%= raw a.css('.multiline')[28] %></p>
+            <p><%= raw a.css('.multiline')[32] %></p>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
   </div>
-</div>
-  <div class="footer"></div>
+  <div class="parallax-container">
+    <div class="parallax">
+      <% if @images.blank? %>
+        <%= image_tag ("open_mic_night222.jpg") %>
+      <% else %>
+          <% @images.each do |a| %>
+          <%= image_tag a.css('.artist-content img')[4].attr('src') %>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="section black">
+    <div class="row container">
+      <div class="tourdates">
+      <h2>TOUR DATES</h2>
+        <% if @mtvscrape.blank? %>
+          <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
+        <% else %>
+          <% @mtvscrape.each do |a| %>
+            <li><%= raw a.css('.content-inner') %></li>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="parallax-container">
+    <div class="parallax">
+      <% if @images.blank? %>
+        <%= image_tag ("Music_Festival_wallpaper.jpg") %>
+      <% else %>
+        <% @images.each do |a| %>
+        <%= image_tag a.css('.artist-content img')[5].attr('src') %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="section black">
+    <div class="row container">
+      <div class="twitterfeed">
+        <h2>TWITTER FEED</h2>
+        <% if @tweet.blank? %>
+          <p> We couldn't find any tweets of <%= @artist.name %> </p>
+          <% else %>
+          <% @tweet.collect do |tweet| %>
+            <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
