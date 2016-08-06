@@ -9,7 +9,7 @@
       <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
         <li><%= f.label :name, id: "search" %></li>
         <li><%= f.text_field :name %></li>
-        <li><a><%= f.submit("Scrape") %></a></li>
+        <li><a class="button"><%= f.submit("Scrape") %></a></li>
       <% end %>
     </u>
     <ul>
