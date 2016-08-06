@@ -44,7 +44,6 @@ body {
 
 .fixed a {
   color: #bfb283;
-
 }
 
 .fixed {
@@ -106,7 +105,6 @@ a.button-collapse {
 a {
   outline: none;
   color: #000;
-
 }
 
 a:hover {
@@ -130,11 +128,17 @@ a input[type="submit"] {
 input#artist_name {
   border-bottom: 1px solid #fff;
   width: 90%;
+  color: #fff;
 }
 
-label {
+label#search {
   margin-top: 50px;
+  color: #fff;
+  text-decoration: underline;
 }
+
+#remove {
+  color: #fff;}
 
 .gold {
   font-size: 18px;
@@ -151,7 +155,7 @@ label {
   letter-spacing: 5px;
 }
 
-.button {
+.section .button {
   border: 1px solid #bfb283;
   background-color: #bfb283;
   border-radius: 7px;
