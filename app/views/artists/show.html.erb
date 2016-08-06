@@ -34,14 +34,7 @@
 <div class="section">
   <div class="row container">
     <div class="biography">
-      <h2>Twitter Feed</h2>
-      <% if @tweet.blank? %><
-        <p> We couldn't find any tweets of <%= @artist.name %> </p>
-        <% @tweet.collect do |tweet| %>
-          <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
-        <% end %>
-      <% end %>
-      <h2> Biography </h2>
+      <h2> BIOGRAPHY </h2>
       <% if @wikiscrape.blank? %>
         <h3> Couldn't find biography of <%= @artist.name %> </h3>
       <% else %>
@@ -64,7 +57,7 @@
 <div class="section black">
   <div class="row container">
     <div class="news">
-    <h2>News</h2>
+    <h2>NEWS</h2>
         <% if @mtvnews.blank? %>
           <h3> Couldn't find news of <%= @artist.name %> </h3>
         <% else %>
@@ -95,7 +88,7 @@
 <div class="section black">
   <div class="row container">
     <div class="tourdates">
-    <h2> Tour Dates </h2>
+    <h2> TOUR DATES </h2>
       <% if @mtvscrape.blank? %>
         <h3> Couldn't find tour dates of <%= @artist.name %> </h3>
       <% else %>
@@ -115,5 +108,18 @@
     <% end %>
   </div>
 </div>
-  <div class="footer"></div>
+<div class="section black">
+  <div class="row container">
+    <div class="twitterfeed">
+      <h2>TWITTER FEED</h2>
+      <% if @tweet.blank? %>
+        <p> We couldn't find any tweets of <%= @artist.name %> </p>
+        <% else %>
+        <% @tweet.collect do |tweet| %>
+          <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
 </div>
