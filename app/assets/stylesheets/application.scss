@@ -46,13 +46,15 @@ body {
   position: fixed;
   height: 100vh;
   padding: 25px;
+  padding-top: 10px;
+
   background-color: black;
   width: 20%;
 }
 
 .fixed ul {
-  margin-top: 50px;
   color: #bfb283;
+  margin-bottom: 60px;
 
 }
 
@@ -66,15 +68,6 @@ body {
 .section li {
   list-style: none;
   margin-bottom: 10px;
-}
-
-.footer {
-  display:flex;
-  align-items: center;
-  height: 150px;
-  background-color: #000;
-  font-size: 14px;
-
 }
 
 h2 {
@@ -123,12 +116,22 @@ input#artist_name {
 }
 
 label {
+  margin-top: 50px;
 }
 
-.search_artist {
+.gold {
   font-size: 18px;
-  margin-bottom: 43px;
+  font-weight: bold;
+  margin-top: 0px;
+  letter-spacing: 5px;
+  line-height: 16px;
+}
 
+.whitey {
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 5px;
 }
 
 img {

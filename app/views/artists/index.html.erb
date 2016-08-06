@@ -1,7 +1,11 @@
 <div class="nav-menu">
   <div class="fixed">
     <u>
-      <li class="search_artist">Search favorite artist</li>
+      <li class="gold">SEARCH</li>
+      <li class="white">FAVORITE</li>
+      <li class="gold">ARTIST</li>
+    </u>
+    <ul>
       <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
         <li><%= f.label :name, id: "search" %></li>
         <li><%= f.text_field :name %></li>
