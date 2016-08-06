@@ -1,12 +1,12 @@
 <div class="nav-menu">
   <div class="fixed">
-      <ul>
-        <li class="gold">SEARCH</li>
-        <li class="whitey">FAVORITE</li>
-        <li class="gold">ARTIST</li>
-      </ul>
-      <ul>
-        <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
+    <ul>
+      <li class="gold">SEARCH</li>
+      <li class="whitey">FAVORITE</li>
+      <li class="gold">ARTIST</li>
+    </ul>
+    <ul>
+      <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
         <li><%= f.label :name, id: "search" %></li>
         <li><%= f.text_field :name %></li>
         <li><a class="button"><%= f.submit("Scrape") %></a></li>

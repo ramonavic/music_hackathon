@@ -4,7 +4,7 @@
       <li class="gold">SEARCH</li>
       <li class="whitey">FAVORITE</li>
       <li class="gold">ARTIST</li>
-    </u>
+    </ul>
     <ul>
       <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
         <li><%= f.label :name, id: "search" %></li>
@@ -14,8 +14,8 @@
     </u>
     <ul>
       <% @artists.each do |artist| %>
-      <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> &nbsp;&nbsp;
-        <%= link_to "x", artist, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> &nbsp;&nbsp;
+          <%= link_to "x", artist, method: :delete, data: { confirm: 'Are you sure?' } %></li>
       <% end %>
     </u>
   </div>

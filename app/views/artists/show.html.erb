@@ -11,7 +11,7 @@
       <li class="gold">ARTIST</li>
     </ul>
     <ul>
-        <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
+      <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
         <li><%= f.label :name, id: "search" %></li>
         <li><%= f.text_field :name %></li>
         <li><a class="button"><%= f.submit("Scrape") %></a></li>
@@ -19,7 +19,7 @@
     </u>
     <ul>
       <% @artists.each do |artist| %>
-      <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> &nbsp;&nbsp;
+        <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> &nbsp;&nbsp;
         <%= link_to "x", artist, method: :delete, data: { confirm: 'Are you sure?' } %></li>
       <% end %>
     </u>
