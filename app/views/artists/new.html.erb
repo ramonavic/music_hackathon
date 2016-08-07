@@ -33,7 +33,6 @@
     </div>
   </div>
   <div class="section">
-    <h1> <%= @artist.name.upcase %> </h1>
     <div class="row container">
       <div class="biography">
         <h2> BIOGRAPHY </h2>
@@ -93,7 +92,6 @@
   </div>
   <div class="section black">
     <div class="row container">
-      <div class="tourdates">
       <h2>TOUR DATES</h2>
         <% if @mtvscrape.blank? %>
           <p> Couldn't find tour dates of <%= @artist.name %> </p>
@@ -102,7 +100,6 @@
             <li><%= raw a.css('.content-inner') %></li>
           <% end %>
         <% end %>
-      </div>
     </div>
   </div>
   <div class="parallax-container">
