@@ -20,7 +20,7 @@
     <ul>
       <% @artists.each do |artist| %>
         <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> &nbsp;&nbsp;
-        <%= link_to "x", artist, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <%= link_to "x", artist, method: :delete, data: { confirm: 'Are you sure?' }, id: "remove" %></li>
       <% end %>
     </u>
   </div>
@@ -36,6 +36,7 @@
     </div>
   </div>
   <div class="section">
+    <h1> <%= @artist.name.upcase %> </h1>
     <div class="row container">
       <div class="biography">
         <h2> BIOGRAPHY </h2>
