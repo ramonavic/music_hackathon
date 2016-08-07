@@ -119,7 +119,8 @@
           <p> We couldn't find any tweets of <%= @artist.name %> </p>
           <% else %>
           <% @tweet.collect do |tweet| %>
-            <p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
+          <p><span style="font-weight:600"><%= "#{tweet.user.screen_name}:" %></span>
+             <%= "#{tweet.text}" %></p>
           <% end %>
         <% end %>
       </div>
