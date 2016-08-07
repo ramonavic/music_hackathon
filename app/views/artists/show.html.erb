@@ -4,9 +4,12 @@
 <div class="nav-menu">
   <div class="fixed">
     <ul>
+      <%= link_to root_path do %>
       <li class="gold">SEARCH</li>
       <li class="whitey">FAVORITE</li>
       <li class="gold">ARTIST</li>
+      <% end %>
+
     </ul>
     <ul>
       <%= form_for @artist, url: create_artists_path, html: {method: "post"} do |f| %>
