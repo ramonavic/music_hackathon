@@ -23,7 +23,7 @@ class ArtistsController < ApplicationController
       config.access_token = ENV["TWITTER_ACCES_TOKEN"]
       config.access_token_secret = ENV["TWITTER_ACCES_TOKEN_SECRET"]
     end
-  
+
     @tweet = client.user_timeline("#{render}", result_type: "recent").take(3)
 
     gsearch = Google::Apis::CustomsearchV1::CustomsearchService.new
@@ -59,7 +59,7 @@ class ArtistsController < ApplicationController
     case response2
     when Net::HTTPSuccess
       data2 = Nokogiri::HTML(open(mtvurl))
-      @mtvscrape = data2.css(".tourdate-item").take(6)
+      @mtvscrape = data2.css(".tourdate-item").take(8)
       @mtvnews = data2.css("#profile_latest_news")
     when Net::HTTPRedirection
       @mtvscrape = ""

@@ -15,7 +15,7 @@
     <ul>
       <% @artists.each do |artist| %>
         <li> <%= link_to artist.name, artist_path(@artist, :id => artist.id) %> &nbsp;&nbsp;
-          <%= link_to "x", artist, method: :delete, data: { confirm: 'Are you sure?' }, id: "remove" %></li>
+        <%= link_to "x", artist, method: :delete, data: { confirm: 'Are you sure?' }, id: "remove" %></li>
       <% end %>
     </u>
   </div>

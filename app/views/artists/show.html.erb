@@ -1,8 +1,6 @@
 <head>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 </head>
-
 <div class="nav-menu">
   <div class="fixed">
     <ul>
@@ -92,8 +90,8 @@
   </div>
   <div class="section black">
     <div class="row container">
-      <div class="tourdates">
       <h2> TOUR DATES </h2>
+      <div class="tourdates">
         <% if @mtvscrape.blank? %>
           <p> Couldn't find tour dates of <%= @artist.name %> </p>
         <% else %>
