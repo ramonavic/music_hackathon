@@ -18,10 +18,8 @@ Cool stuf we learned from this project include:
 
 ###TODO:
 
-- Background helpers
-- Find a good source for images
-- Bring back connection with Twitter API
-- Styling
+- Transfer logic to models and set up background helpers
+
 
 ###SETUP
 
