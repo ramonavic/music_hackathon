@@ -75,16 +75,6 @@ class ArtistsController < ApplicationController
       @mtvnewslink = ""
     end
 
-    rollingstone = "http://www.rollingstone.com/music/artists/#{name.parameterize.to_s}"
-    response4 = Net::HTTP.get_response(URI(rollingstone))
-
-    case response4
-    when Net::HTTPSuccess
-      data4 = Nokogiri::HTML(open(rollingstone))
-      @images = data4.css(".main")
-    when Net::HTTPRedirection
-      @images = ""
-    end
 
   end
 
