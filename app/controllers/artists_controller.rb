@@ -39,9 +39,9 @@ class ArtistsController < ApplicationController
     )
 
     wikiurl = "https://en.wikipedia.org/wiki/#{name.to_s.tr(' ', '_')}"
-    response1 = Net::HTTP.get_response(URI(wikiurl))
+    response = Net::HTTP.get_response(URI(wikiurl))
 
-    case response1
+    case response
     when Net::HTTPSuccess
       data1 = Nokogiri::HTML(open(wikiurl))
       @wikiscrape = data1.css('#mw-content-text')
@@ -52,9 +52,9 @@ class ArtistsController < ApplicationController
     end
 
     mtvurl = "http://www.mtv.com/artists/#{name.downcase.parameterize.to_s}/"
-    response2 = Net::HTTP.get_response(URI(mtvurl))
+    response = Net::HTTP.get_response(URI(mtvurl))
 
-    case response2
+    case response
     when Net::HTTPSuccess
       data2 = Nokogiri::HTML(open(mtvurl))
       @mtvscrape = data2.css(".tourdate-item").take(8)
@@ -65,9 +65,9 @@ class ArtistsController < ApplicationController
     end
 
     mtvnews = "http://www.mtv.com/artists/#{name.parameterize.to_s}/news/"
-    response3 = Net::HTTP.get_response(URI(mtvnews))
+    response = Net::HTTP.get_response(URI(mtvnews))
 
-    case response3
+    case response
     when Net::HTTPSuccess
       news = Nokogiri::HTML(open(mtvnews))
       @mtvnewslink = news.css(".content-body")
