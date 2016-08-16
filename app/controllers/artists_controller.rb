@@ -17,6 +17,8 @@ class ArtistsController < ApplicationController
 
     name = @artist.name.downcase.capitalize
 
+    # Twitter API Connection for latest Tweets
+
     client = Twitter::REST::Client.new do |config|
       config.consumer_key = ENV["TWITTER_CONSUMER_KEY"]
       config.consumer_secret = ENV["TWITTER_CONSUMER_SECRET"]
@@ -26,54 +28,51 @@ class ArtistsController < ApplicationController
 
     @tweet = client.user_timeline("#{name}", result_type: "recent").take(4)
 
-    gsearch = Google::Apis::CustomsearchV1::CustomsearchService.new
-    gsearch.key = ENV["GOOGLE_SEARCH_KEY"]
-    cx = ENV["GOOGLE_CX"]
+    # Google API connection for artist images
 
-    @results = gsearch.list_cses(
-      name,
-      cx: cx,
-      num: 4,
-      img_size: 'xlarge',
-      search_type: 'image'
-    )
+    # gsearch = Google::Apis::CustomsearchV1::CustomsearchService.new
+    # gsearch.key = ENV["GOOGLE_SEARCH_KEY"]
+    # cx = ENV["GOOGLE_CX"]
+    #
+    # @results = gsearch.list_cses(
+    #   name,
+    #   cx: cx,
+    #   num: 4,
+    #   img_size: 'xlarge',
+    #   search_type: 'image'
+    # )
+
+    # Wikipedia Biography scraper
 
     wikiurl = "https://en.wikipedia.org/wiki/#{name.to_s.tr(' ', '_')}"
     response = Net::HTTP.get_response(URI(wikiurl))
 
     case response
     when Net::HTTPSuccess
-      data1 = Nokogiri::HTML(open(wikiurl))
-      @wikiscrape = data1.css('#mw-content-text')
+      data = Nokogiri::HTML(open(wikiurl))
+      @wikiscrape = data.css('#mw-content-text')
       puts @wikiscrape
     when Net::HTTPRedirection
       @wikiscrape = ""
       puts ""
     end
 
+
+    # MTV News and tourdates scraper
+
     mtvurl = "http://www.mtv.com/artists/#{name.downcase.parameterize.to_s}/"
     response = Net::HTTP.get_response(URI(mtvurl))
 
     case response
     when Net::HTTPSuccess
-      data2 = Nokogiri::HTML(open(mtvurl))
-      @mtvscrape = data2.css(".tourdate-item").take(8)
-      @mtvnews = data2.css("#profile_latest_news")
+      data = Nokogiri::HTML(open(mtvurl))
+      @mtvscrape = data.css(".tourdate-item").take(8)
+      @mtvnews = data.css("#profile_latest_news")
     when Net::HTTPRedirection
       @mtvscrape = ""
       @mtvnews = ""
     end
 
-    mtvnews = "http://www.mtv.com/artists/#{name.parameterize.to_s}/news/"
-    response = Net::HTTP.get_response(URI(mtvnews))
-
-    case response
-    when Net::HTTPSuccess
-      news = Nokogiri::HTML(open(mtvnews))
-      @mtvnewslink = news.css(".content-body")
-    when Net::HTTPRedirection
-      @mtvnewslink = ""
-    end
 
 
   end
