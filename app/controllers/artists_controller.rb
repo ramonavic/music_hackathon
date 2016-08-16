@@ -15,7 +15,7 @@ class ArtistsController < ApplicationController
     @artists = Artist.all
     @artist = Artist.find(params[:id])
 
-    render = @artist.name.downcase.capitalize
+    name = @artist.name.downcase.capitalize
 
     client = Twitter::REST::Client.new do |config|
       config.consumer_key = ENV["TWITTER_CONSUMER_KEY"]
@@ -24,24 +24,22 @@ class ArtistsController < ApplicationController
       config.access_token_secret = ENV["TWITTER_ACCES_TOKEN_SECRET"]
     end
 
-    @tweet = client.user_timeline("#{render}", result_type: "recent").take(4)
+    @tweet = client.user_timeline("#{name}", result_type: "recent").take(4)
 
     gsearch = Google::Apis::CustomsearchV1::CustomsearchService.new
     gsearch.key = ENV["GOOGLE_SEARCH_KEY"]
     cx = ENV["GOOGLE_CX"]
 
     @results = gsearch.list_cses(
-      render,
+      name,
       cx: cx,
       num: 4,
       img_size: 'xlarge',
       search_type: 'image'
     )
 
-    wikiurl = "https://en.wikipedia.org/wiki/#{render.to_s.tr(' ', '_')}"
+    wikiurl = "https://en.wikipedia.org/wiki/#{name.to_s.tr(' ', '_')}"
     response1 = Net::HTTP.get_response(URI(wikiurl))
-
-    puts response1.to_s
 
     case response1
     when Net::HTTPSuccess
@@ -53,7 +51,7 @@ class ArtistsController < ApplicationController
       puts ""
     end
 
-    mtvurl = "http://www.mtv.com/artists/#{render.downcase.parameterize.to_s}/"
+    mtvurl = "http://www.mtv.com/artists/#{name.downcase.parameterize.to_s}/"
     response2 = Net::HTTP.get_response(URI(mtvurl))
 
     case response2
@@ -66,7 +64,7 @@ class ArtistsController < ApplicationController
       @mtvnews = ""
     end
 
-    mtvnews = "http://www.mtv.com/artists/#{render.parameterize.to_s}/news/"
+    mtvnews = "http://www.mtv.com/artists/#{name.parameterize.to_s}/news/"
     response3 = Net::HTTP.get_response(URI(mtvnews))
 
     case response3
@@ -77,7 +75,7 @@ class ArtistsController < ApplicationController
       @mtvnewslink = ""
     end
 
-    rollingstone = "http://www.rollingstone.com/music/artists/#{render.parameterize.to_s}"
+    rollingstone = "http://www.rollingstone.com/music/artists/#{name.parameterize.to_s}"
     response4 = Net::HTTP.get_response(URI(rollingstone))
 
     case response4
