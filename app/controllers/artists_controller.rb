@@ -30,17 +30,17 @@ class ArtistsController < ApplicationController
 
     # Google API connection for artist images
 
-      # gsearch = Google::Apis::CustomsearchV1::CustomsearchService.new
-      # gsearch.key = ENV["GOOGLE_SEARCH_KEY"]
-      # cx = ENV["GOOGLE_CX"]
-      #
-      # @results = gsearch.list_cses(
-      #   name,
-      #   cx: cx,
-      #   num: 4,
-      #   img_size: 'xlarge',
-      #   search_type: 'image'
-      # )
+      gsearch = Google::Apis::CustomsearchV1::CustomsearchService.new
+      gsearch.key = ENV["GOOGLE_SEARCH_KEY"]
+      cx = ENV["GOOGLE_CX"]
+
+      @results = gsearch.list_cses(
+        name,
+        cx: cx,
+        num: 4,
+        img_size: 'xlarge',
+        search_type: 'image'
+      )
 
     # Wikipedia Biography scraper
 
